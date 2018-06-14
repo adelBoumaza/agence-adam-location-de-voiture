@@ -1,0 +1,7 @@
+---
+applications:
+- name: agence-adam-location-voiture
+  memory: 512M
+  instances: 1
+  domain: cfapps.io
+  path: target/agence-adam-location-de-voiture-0.0.1-SNAPSHOT.jar
