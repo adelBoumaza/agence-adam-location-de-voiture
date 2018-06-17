@@ -43,8 +43,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		System.out.println("branch dev");
-		System.out.println("branch master");
+
 	}
 	
 	@Test
