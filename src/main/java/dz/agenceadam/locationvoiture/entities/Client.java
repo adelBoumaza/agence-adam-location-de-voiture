@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "TB_CLIENT")
 public class Client  implements Serializable{
@@ -21,22 +23,78 @@ public class Client  implements Serializable{
 	private String nom;
 	private String prenom;
 	private Date dateDeNaissance;
+	private String email;
+	private String numeroDePermis;
+	private Date dateObtention;
+	private Date dateExpiration;
 	
 	
 	
-	
-	
-	public Client(String nom, String prenom, Date dateDeNaissance) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateDeNaissance = dateDeNaissance;
-	}
 
 
 	public Client() {
 		
 	}
+	
+	
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+
+	public String getNumeroDePermis() {
+		return numeroDePermis;
+	}
+
+
+
+
+	public void setNumeroDePermis(String numeroDePermis) {
+		this.numeroDePermis = numeroDePermis;
+	}
+
+
+
+
+	public Date getDateObtention() {
+		return dateObtention;
+	}
+
+
+
+
+	public void setDateObtention(Date dateObtention) {
+		this.dateObtention = dateObtention;
+	}
+
+
+
+
+	public Date getDateExpiration() {
+		return dateExpiration;
+	}
+
+
+
+
+	public void setDateExpiration(Date dateExpiration) {
+		this.dateExpiration = dateExpiration;
+	}
+
+
 
 
 	public Integer getId() {
@@ -77,6 +135,18 @@ public class Client  implements Serializable{
 	public void setDateDeNaissance(Date dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateDeNaissance=" + dateDeNaissance
+				+ ", email=" + email + ", numeroDePermis=" + numeroDePermis + ", dateObtention=" + dateObtention
+				+ ", dateExpiration=" + dateExpiration + "]";
+	}
+	
+	
 	
 	
 }
