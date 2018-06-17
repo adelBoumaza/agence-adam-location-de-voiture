@@ -85,5 +85,10 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		iUserRepository.save(user);
 		
 	}
+	
+	public void testStash()
+	{
+		System.out.println("tester le stash ");
+	}
 
 }
