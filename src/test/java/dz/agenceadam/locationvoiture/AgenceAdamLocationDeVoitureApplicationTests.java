@@ -71,6 +71,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	}
 	
 	@Test
+	@Ignore
 	public void addUserAndRole()
 	{
 		User user = GenericBuilder.of(User::new)
