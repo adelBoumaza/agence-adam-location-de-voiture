@@ -5,8 +5,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dz.agenceadam.locationvoiture.dao.IClientDao;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
 
 @Service
@@ -14,12 +14,17 @@ import dz.agenceadam.locationvoiture.service.IClientService;
 public class ClientServiceImpl implements IClientService{
 	
 	@Autowired
-	private IClientDao iClienDao;
+	private ClientRepository clientRepository;
 
 	@Override
 	public Client save(Client client) {
-		// TODO Auto-generated method stub
-		return iClienDao.save(client);
+		
+		return clientRepository.save(client);
+	}
+
+	@Override
+	public void getAll() {
+		clientRepository.getAll();
 	}
 
 }
