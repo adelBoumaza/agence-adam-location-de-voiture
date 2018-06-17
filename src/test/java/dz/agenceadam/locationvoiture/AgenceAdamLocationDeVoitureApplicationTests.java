@@ -40,10 +40,15 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-
+    
+	public void testConflict()
+	{
+		
+	}
+	
 	@Test
 	public void contextLoads() {
-      System.out.println("branch master new");
+      System.out.println("branch dev new");
 	}
 	
 	@Test
