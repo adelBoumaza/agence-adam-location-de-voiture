@@ -6,7 +6,7 @@
 	<groupId>dz.location-voiture</groupId>
 	<artifactId>agence-adam-location-de-voiture</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>agence-adam-location-de-voiture</name>
 	<description>Demo project for Spring Boot</description>
