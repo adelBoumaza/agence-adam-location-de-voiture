@@ -1,7 +1,13 @@
 package dz.agenceadam.locationvoiture.repository.custom;
 
+import java.util.List;
 
-public interface ClientRepositoryCustom {
+import dz.agenceadam.locationvoiture.entities.Client;
 
-	void getAll();
+
+public interface ClientRepositoryCustom{
+
+	List<Client> findAllClientActived();
+	
+
 }

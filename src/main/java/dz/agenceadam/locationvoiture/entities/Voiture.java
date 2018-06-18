@@ -4,11 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
+@SuppressWarnings("serial")
 @Table(name = "TB_VOITURE")
 @Entity
 public class Voiture  implements Serializable{
@@ -19,27 +26,25 @@ public class Voiture  implements Serializable{
 	private Integer id;
 	@Column(name="MARQUE")
 	private String marque;
-	@Column(name="IMMATRICULE")
-	private String immatricule;
+	@Column(name="MATRICULE")
+	private String matricule;
 	@Column(name="PRIX_ACHAT")
 	private Double prixAchat;
 	@Column(name="PRIX_LOCATION")
 	private Double prixLocation;
 	@Column(name="ENERGIE")
 	private String energie;
+	private Boolean actived;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FK_USER")
+	private User user;
+
 	
 	public Voiture() {
 
 	}
 	
-	public Voiture(String marque, String immatricule, Double prixAchat, Double prixLocation, String energie) {
-		super();
-		this.marque = marque;
-		this.immatricule = immatricule;
-		this.prixAchat = prixAchat;
-		this.prixLocation = prixLocation;
-		this.energie = energie;
-	}
+	
 
 	public Integer getId() {
 		return id;
@@ -57,13 +62,19 @@ public class Voiture  implements Serializable{
 		this.marque = marque;
 	}
 
-	public String getImmatricule() {
-		return immatricule;
+	
+
+	public String getMatricule() {
+		return matricule;
 	}
 
-	public void setImmatricule(String immatricule) {
-		this.immatricule = immatricule;
+
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
 	}
+
+
 
 	public Double getPrixAchat() {
 		return prixAchat;
@@ -88,10 +99,38 @@ public class Voiture  implements Serializable{
 	public void setEnergie(String energie) {
 		this.energie = energie;
 	}
+	
+	
+	
+	
+    public Boolean getActived() {
+		return actived;
+	}
+
+
+
+	public void setActived(Boolean actived) {
+		this.actived = actived;
+	}
+
+
+
+	@JsonIgnore
+	public User getUser() {
+		return user;
+	}
+
+
+    @JsonSetter
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Voiture [id=" + id + ", marque=" + marque + ", immatricule=" + immatricule + ", prixAchat=" + prixAchat
+		return "Voiture [id=" + id + ", marque=" + marque + ", matricule=" + matricule + ", prixAchat=" + prixAchat
 				+ ", prixLocation=" + prixLocation + ", energie=" + energie + "]";
 	}
 	
