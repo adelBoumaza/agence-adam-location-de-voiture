@@ -5,10 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 
 @SuppressWarnings("serial")
@@ -27,6 +33,11 @@ public class Client  implements Serializable{
 	private String numeroDePermis;
 	private Date dateObtention;
 	private Date dateExpiration;
+	private Integer note;
+	private Boolean actived;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="FK_USER")
+	private User user;
 	
 	
 	
@@ -135,6 +146,62 @@ public class Client  implements Serializable{
 	public void setDateDeNaissance(Date dateDeNaissance) {
 		this.dateDeNaissance = dateDeNaissance;
 	}
+	
+	
+
+
+
+	public Integer getNote() {
+		return note;
+	}
+
+
+
+
+
+
+	public void setNote(Integer note) {
+		this.note = note;
+	}
+
+
+
+
+
+
+	@JsonIgnore
+	public User getUser() {
+		return user;
+	}
+
+
+    
+
+
+    public Boolean getActived() {
+		return actived;
+	}
+
+
+
+
+
+
+	public void setActived(Boolean actived) {
+		this.actived = actived;
+	}
+
+
+
+
+
+
+	@JsonSetter
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 
 
