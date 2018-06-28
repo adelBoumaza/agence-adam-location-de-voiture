@@ -1,0 +1,22 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::  (v1.5.14.BUILD-SNAPSHOT)
+
+2018-06-18 19:19:23.333 DEBUG 28565 --- [           main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: URL [jar:file:/root/workspace/v1/agence-adam-location-de-voiture/target/agence-adam-location-de-voiture-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/dz/agenceadam/locationvoiture/repository/UserRepository.class]
+2018-06-18 19:19:23.343 DEBUG 28565 --- [           main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: URL [jar:file:/root/workspace/v1/agence-adam-location-de-voiture/target/agence-adam-location-de-voiture-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/dz/agenceadam/locationvoiture/repository/ClientRepository.class]
+2018-06-18 19:19:23.345 DEBUG 28565 --- [           main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: URL [jar:file:/root/workspace/v1/agence-adam-location-de-voiture/target/agence-adam-location-de-voiture-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/dz/agenceadam/locationvoiture/repository/VoitureRepository.class]
+2018-06-18 19:19:23.349 DEBUG 28565 --- [           main] o.s.d.r.c.RepositoryComponentProvider    : Identified candidate component class: URL [jar:file:/root/workspace/v1/agence-adam-location-de-voiture/target/agence-adam-location-de-voiture-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/dz/agenceadam/locationvoiture/repository/RoleRepository.class]
+2018-06-18 19:19:23.369 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryBeanDefinitionBuilder : Registering custom repository implementation: voitureRepositoryImpl dz.agenceadam.locationvoiture.repository.impl.VoitureRepositoryImpl
+2018-06-18 19:19:23.372 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Spring Data JPA - Registering repository: voitureRepository - Interface: dz.agenceadam.locationvoiture.repository.VoitureRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
+2018-06-18 19:19:23.394 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryBeanDefinitionBuilder : Registering custom repository implementation: clientRepositoryImpl dz.agenceadam.locationvoiture.repository.impl.ClientRepositoryImpl
+2018-06-18 19:19:23.395 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Spring Data JPA - Registering repository: clientRepository - Interface: dz.agenceadam.locationvoiture.repository.ClientRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
+2018-06-18 19:19:23.399 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Spring Data JPA - Registering repository: roleRepository - Interface: dz.agenceadam.locationvoiture.repository.RoleRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
+2018-06-18 19:19:23.406 DEBUG 28565 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Spring Data JPA - Registering repository: userRepository - Interface: dz.agenceadam.locationvoiture.repository.UserRepository - Factory: org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean
+2018-06-18 19:19:34.240 DEBUG 28565 --- [ost-startStop-1] o.s.d.j.r.query.JpaQueryFactory          : Looking up query for method getByUserName
+2018-06-18 19:19:34.260 DEBUG 28565 --- [ost-startStop-1] o.s.d.jpa.repository.query.NamedQuery    : Looking up named query User.getByUserName
+2018-06-18 19:19:34.260 DEBUG 28565 --- [ost-startStop-1] o.s.d.jpa.repository.query.NamedQuery    : Did not find named query User.getByUserName
