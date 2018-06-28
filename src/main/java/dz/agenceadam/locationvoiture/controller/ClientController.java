@@ -1,5 +1,6 @@
 package dz.agenceadam.locationvoiture.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.service.IClientService;
 
 @RestController
@@ -35,8 +38,8 @@ public class ClientController {
 	}
 	
 	@PostMapping("/client/saveClient/withUser/{idUser}")
-	public Client save(@RequestBody Client client,@PathVariable Integer idUser)
+	public Client save(@RequestBody ClientDto clientDto,@PathVariable Integer idUser) throws ParseException, DataFoundedException
 	{
-		return iClientService.saveClientWidthUser(client, idUser);
+		return iClientService.saveClientWidthUser(clientDto, idUser);
 	}
 }
