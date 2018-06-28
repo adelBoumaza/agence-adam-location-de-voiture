@@ -1,8 +1,11 @@
 package dz.agenceadam.locationvoiture.service;
 
+import java.text.ParseException;
 import java.util.List;
 
+import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 
 public interface IClientService {
 
@@ -10,5 +13,5 @@ public interface IClientService {
 	
 	List<Client> findAll();
 	
-	Client saveClientWidthUser(Client client,Integer idUser);
+	Client saveClientWidthUser(ClientDto clientDTO,Integer idUser) throws ParseException, DataFoundedException ;
 }
