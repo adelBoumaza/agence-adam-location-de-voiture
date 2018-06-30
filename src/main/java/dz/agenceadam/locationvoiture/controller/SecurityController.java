@@ -52,6 +52,7 @@ public class SecurityController {
 	@GetMapping("/protected/sessions")
 	public List<?> sessions() {
 		return this.sessionRegistry.getAllPrincipals();
+		//comment
 	}
 	
 	@GetMapping("/successful")
