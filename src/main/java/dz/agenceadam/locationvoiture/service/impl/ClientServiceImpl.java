@@ -32,7 +32,7 @@ public class ClientServiceImpl implements IClientService{
 
 	@Override
 	public List<Client> findAll() {
-
+        
 		return clientRepository.findAllClientActived();
 	}
 	
@@ -44,6 +44,7 @@ public class ClientServiceImpl implements IClientService{
 				.with(Client::setAdresse, clientDto.getAdresse())
 				.with(Client::setClientBloque, Boolean.FALSE)
 				.with(Client::setDateDeNaissance, IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()))
+				.with(Client::setLieuDeNaissance, clientDto.getDateDeNaissance())
 				.with(Client::setEmail, clientDto.getEmail())
 				.with(Client::setEndette,Boolean.FALSE)
 				.with(Client::setLieuObtentionPasseport,clientDto.getLieuObtentionPasseport())

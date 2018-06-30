@@ -3,6 +3,7 @@ package dz.agenceadam.locationvoiture;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,10 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.entities.Client;
-import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
-import dz.agenceadam.locationvoiture.util.GenericBuilder;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,7 +29,7 @@ public class ClientServiceTestu {
 	ClientRepository clientRepository;
 	
 	
-	@Test
+	@Test @Ignore
 	public void saveClient()
 	{
 	   ClientDto dto = new ClientDto();
@@ -54,7 +54,9 @@ public class ClientServiceTestu {
 	public void findAll()
 	{
 		
-			iClientService.findAll();
+			List<Client> c = iClientService.findAll();
+			System.out.println(c);
+			
 		
 	}
 	

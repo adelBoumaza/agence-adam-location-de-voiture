@@ -8,6 +8,7 @@ public class ClientDto {
 	private String nom;
 	private String prenom;
 	private String dateDeNaissance;
+	private String lieuDeNaissance;
 	private String adresse;
 	private String email;
 	private String numeTelOne;
@@ -29,6 +30,17 @@ public class ClientDto {
 	
 	public ClientDto() {
 	}
+
+	
+	public String getLieuDeNaissance() {
+		return lieuDeNaissance;
+	}
+
+
+	public void setLieuDeNaissance(String lieuDeNaissance) {
+		this.lieuDeNaissance = lieuDeNaissance;
+	}
+
 
 	public Integer getId() {
 		return id;
