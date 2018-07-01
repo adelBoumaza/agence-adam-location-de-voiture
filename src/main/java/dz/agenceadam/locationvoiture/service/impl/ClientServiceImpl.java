@@ -36,7 +36,7 @@ public class ClientServiceImpl implements IClientService{
 		return clientRepository.findAllClientActived();
 	}
 	
-
+//comment 
 	@Override
 	public Client saveClientWidthUser(ClientDto clientDto, Integer idUser) throws ParseException, DataFoundedException{
 		Client client = GenericBuilder.of(Client::new)
