@@ -33,7 +33,6 @@ public class Client  implements Serializable{
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateDeNaissance;
 	private String lieuDeNaissance;
 	private String adresse;
@@ -44,10 +43,8 @@ public class Client  implements Serializable{
 	private String numeroPasseport;
 	private String numeroDePermis;
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateObtentionPermis;
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dateObtentionPassport;
 	private String lieuObtentionPermis;
 	private String lieuObtentionPasseport;

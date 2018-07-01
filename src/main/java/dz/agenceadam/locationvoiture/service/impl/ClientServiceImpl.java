@@ -74,7 +74,10 @@ public class ClientServiceImpl implements IClientService{
 	    		   .with(User::setId, idUser).build();
 	    client.setUser(user);
 	    Client clientEntity = clientRepository.findByNomAndPrenomAndDateDeNaissance
-	    		(client.getNom(), client.getPrenom(), IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()));
+	    		(client.getNom(),
+	    		client.getPrenom(),
+	    		IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()),
+	    		idUser);
 	    if(clientEntity != null)
 	    {
 	    	throw new DataFoundedException("client existe");
