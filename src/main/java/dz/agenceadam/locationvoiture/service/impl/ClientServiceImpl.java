@@ -40,13 +40,13 @@ public class ClientServiceImpl implements IClientService{
 	@Override
 	public Client saveClientWidthUser(ClientDto clientDto, Integer idUser) throws ParseException, DataFoundedException{
 		Client client = GenericBuilder.of(Client::new)
-				.with(Client::setActived, Boolean.TRUE)
+				.with(Client::setActived, clientDto.getActived())
 				.with(Client::setAdresse, clientDto.getAdresse())
-				.with(Client::setClientBloque, Boolean.FALSE)
+				.with(Client::setClientBloque, clientDto.getClientBloque())
 				.with(Client::setDateDeNaissance, IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()))
 				.with(Client::setLieuDeNaissance, clientDto.getDateDeNaissance())
 				.with(Client::setEmail, clientDto.getEmail())
-				.with(Client::setEndette,Boolean.FALSE)
+				.with(Client::setEndette,clientDto.getEndette())
 				.with(Client::setLieuObtentionPasseport,clientDto.getLieuObtentionPasseport())
 				.with(Client::setLieuObtentionPermis,clientDto.getLieuObtentionPermis())
 				.with(Client::setNom,clientDto.getNom())
@@ -58,7 +58,7 @@ public class ClientServiceImpl implements IClientService{
 				.with(Client::setObservation,clientDto.getObservation())
 				.with(Client::setPrenom,clientDto.getPrenom())
 				.with(Client::setSommeDette,clientDto.getSommeDette())
-				.with(Client::setTypeClient,Boolean.TRUE)
+				.with(Client::setTypeClient,clientDto.getTypeClient())
 				.build();
 		
 		if(clientDto.getDateObtentionPassport() != null)
