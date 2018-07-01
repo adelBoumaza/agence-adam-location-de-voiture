@@ -16,6 +16,7 @@ import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
+import dz.agenceadam.locationvoiture.util.IConstant;
 
 
 @RunWith(SpringRunner.class)
@@ -29,17 +30,17 @@ public class ClientServiceTestu {
 	ClientRepository clientRepository;
 	
 	
-	@Test @Ignore
-	public void saveClient()
+	@Test
+	public void saveClient() throws ParseException
 	{
 	   ClientDto dto = new ClientDto();
 	   dto.setNom("BOUMAZA");
-	   dto.setPrenom("adel");
-	   dto.setDateDeNaissance("28/06/2018");
+	   dto.setPrenom("Rafik");
+	   dto.setDateDeNaissance("11/10/2016");
        
     		   
       try {
-		iClientService.saveClientWidthUser(dto, 1);
+		iClientService.saveClientWidthUser(dto, 2);
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -68,7 +69,7 @@ public class ClientServiceTestu {
 		    Date date;
 			try {
 				date = sdf.parse("2018-06-28");
-				Client c = clientRepository.findByNomAndPrenomAndDateDeNaissance("BOUMAZA", "adel", date);
+				Client c = clientRepository.findByNomAndPrenomAndDateDeNaissance("BOUMAZA", "adel", date,1);
 				System.out.println(c);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
