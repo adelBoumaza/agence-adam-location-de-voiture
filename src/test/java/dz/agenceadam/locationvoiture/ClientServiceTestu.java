@@ -40,7 +40,7 @@ public class ClientServiceTestu {
        
     		   
       try {
-		iClientService.saveClientWidthUser(dto, 2);
+		iClientService.saveClientWidthUser(dto, 2,true);
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

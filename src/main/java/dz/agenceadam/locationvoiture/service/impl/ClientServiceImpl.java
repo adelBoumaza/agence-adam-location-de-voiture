@@ -37,7 +37,7 @@ public class ClientServiceImpl implements IClientService{
 	}
 	
 
-	public Client saveClientWidthUser(ClientDto clientDto, Integer idUser) throws ParseException, DataFoundedException{
+	public Client saveClientWidthUser(ClientDto clientDto, Integer idUser,Boolean save) throws ParseException, DataFoundedException{
 		Client client = GenericBuilder.of(Client::new)
 				.with(Client::setActived, clientDto.getActived())
 				.with(Client::setAdresse, clientDto.getAdresse())
@@ -77,7 +77,7 @@ public class ClientServiceImpl implements IClientService{
 	    		client.getPrenom(),
 	    		IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()),
 	    		idUser);
-	    if(clientEntity != null)
+	    if(clientEntity != null && save)
 	    {
 	    	throw new DataFoundedException("client existe");
 	    }

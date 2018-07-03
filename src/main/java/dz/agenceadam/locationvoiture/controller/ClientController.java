@@ -37,9 +37,9 @@ public class ClientController {
 		return iClientService.findAll();
 	}
 	
-	@PostMapping("/client/saveClient/withUser/{idUser}")
-	public Client save(@RequestBody ClientDto clientDto,@PathVariable Integer idUser) throws ParseException, DataFoundedException
+	@PostMapping("/client/saveClient/withUser/{idUser}/{save}")
+	public Client save(@RequestBody ClientDto clientDto,@PathVariable Integer idUser,@PathVariable Boolean save) throws ParseException, DataFoundedException
 	{
-		return iClientService.saveClientWidthUser(clientDto, idUser);
+		return iClientService.saveClientWidthUser(clientDto, idUser,save);
 	}
 }
