@@ -72,16 +72,21 @@ public class ClientServiceImpl implements IClientService{
 		User user = GenericBuilder.of(User::new)
 	    		   .with(User::setId, idUser).build();
 	    client.setUser(user);
-	    Client clientEntity = clientRepository.findByNomAndPrenomAndDateDeNaissance
+	    Client clientExiste = clientRepository.findByNomAndPrenomAndDateDeNaissance
 	    		(client.getNom(),
 	    		client.getPrenom(),
 	    		IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()),
 	    		idUser);
-	    if(clientEntity != null && save)
+	    if(clientExiste != null && save)
 	    {
-	    	throw new DataFoundedException("client existe");
+	    	throw new DataFoundedException("le client existe dans la base de données");
+	    }
+	    if(!save)
+	    {
+	    	client.setId(clientDto.getId());
 	    }
 	    clientRepository.save(client);
+	    
 		return client;
 	}
 
