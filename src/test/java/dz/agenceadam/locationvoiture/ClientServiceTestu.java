@@ -34,13 +34,14 @@ public class ClientServiceTestu {
 	public void saveClient() throws ParseException
 	{
 	   ClientDto dto = new ClientDto();
-	   dto.setNom("BOUMAZA");
-	   dto.setPrenom("Rafik");
+	   dto.setId(9);
+	   dto.setNom("Boumazaa");
+	   dto.setPrenom("");
 	   dto.setDateDeNaissance("11/10/2016");
        
     		   
       try {
-		iClientService.saveClientWidthUser(dto, 2,true);
+		iClientService.saveClientWidthUser(dto, 2,false);
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

@@ -2,12 +2,14 @@ package dz.agenceadam.locationvoiture.service;
 
 import java.util.List;
 
+import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Voiture;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 
 public interface IVoitureService {
 
 
-	Voiture saveVoitureWidthUser(Voiture voiture,Integer idUser);
+	VoitureDto saveVoitureWidthUser(VoitureDto voitureDto,Integer idUser,Boolean save) throws DataFoundedException ;
 	
 	List<Voiture> findAll();
 	
