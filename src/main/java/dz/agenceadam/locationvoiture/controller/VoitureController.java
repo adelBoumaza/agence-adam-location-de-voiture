@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import dz.agenceadam.locationvoiture.dto.AssuranceDto;
+import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Voiture;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
 
 @RestController
@@ -25,9 +29,9 @@ public class VoitureController {
 		return voitureService.findAll();
 	}
 	
-	@PostMapping("/voiture/saveVoiture/withUser/{idUser}")
-	public Voiture save(@RequestBody Voiture voiture,@PathVariable Integer idUser)
+	@PostMapping("/voiture/saveVoiture/withUser/{idUser}/action/{save}")
+	public VoitureDto save(@RequestBody VoitureDto voitureDto,@PathVariable Integer idUser,Boolean save) throws DataFoundedException
 	{
-		return voitureService.saveVoitureWidthUser(voiture, idUser);
+		return voitureService.saveVoitureWidthUser(voitureDto, idUser,save);
 	}
 }

@@ -13,5 +13,5 @@ public interface IClientService {
 	
 	List<Client> findAll();
 	
-	Client saveClientWidthUser(ClientDto clientDTO,Integer idUser,Boolean save) throws ParseException, DataFoundedException ;
+	ClientDto saveClientWidthUser(ClientDto clientDTO,Integer idUser,Boolean save) throws ParseException, DataFoundedException ;
 }
