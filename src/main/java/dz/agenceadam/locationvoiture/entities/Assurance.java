@@ -31,6 +31,9 @@ public class Assurance implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateExpiration;
 	
+	@Column(name="TYPE_ASSURANCE")
+	private String typeAssurance;
+	
 	@Column(scale = 2,name="PRIX_ACHAT")
 	private BigDecimal prixAchat;
 	
@@ -76,6 +79,16 @@ public class Assurance implements Serializable{
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
 	}
+    
+    
+
+	public String getTypeAssurance() {
+		return typeAssurance;
+	}
+
+	public void setTypeAssurance(String typeAssurance) {
+		this.typeAssurance = typeAssurance;
+	}
 
 	@Override
 	public int hashCode() {
@@ -84,6 +97,8 @@ public class Assurance implements Serializable{
 		result = prime * result + ((dateExpiration == null) ? 0 : dateExpiration.hashCode());
 		return result;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

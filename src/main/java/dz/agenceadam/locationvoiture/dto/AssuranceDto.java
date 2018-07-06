@@ -10,8 +10,7 @@ public class AssuranceDto {
 
 	private BigDecimal prixAchat;
 	
-	private Integer idVoiture;
-	
+	private String typeAssurance;
 	
 	public AssuranceDto() {
 
@@ -36,15 +35,19 @@ public class AssuranceDto {
 	public void setPrixAchat(BigDecimal prixAchat) {
 		this.prixAchat = prixAchat;
 	}
+	
+	
 
 
-	public Integer getIdVoiture() {
-		return idVoiture;
+
+
+	public String getTypeAssurance() {
+		return typeAssurance;
 	}
 
 
-	public void setIdVoiture(Integer idVoiture) {
-		this.idVoiture = idVoiture;
+	public void setTypeAssurance(String typeAssurance) {
+		this.typeAssurance = typeAssurance;
 	}
 
 

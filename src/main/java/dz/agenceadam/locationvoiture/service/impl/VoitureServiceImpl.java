@@ -79,6 +79,7 @@ public class VoitureServiceImpl implements IVoitureService{
 				try {
 					assurance = GenericBuilder.of(Assurance::new)
 							.with(Assurance::setDateExpiration,IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateExpiration()))
+							.with(Assurance::setTypeAssurance, dto.getTypeAssurance())
 							.build();
 					assurance.setPrixAchat(dto.getPrixAchat());
 					assurance.setVoiture(voiture);
