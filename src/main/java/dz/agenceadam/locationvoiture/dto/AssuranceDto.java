@@ -76,6 +76,15 @@ public class AssuranceDto {
 			return false;
 		return true;
 	}
+
+
+	@Override
+	public String toString() {
+		return "AssuranceDto [dateExpiration=" + dateExpiration + ", prixAchat=" + prixAchat + ", typeAssurance="
+				+ typeAssurance + "]";
+	}
+	
+	
 	
 	
 	
