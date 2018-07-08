@@ -20,10 +20,10 @@ public class ParametrageRevisionController {
 	@Autowired
 	private IParametrageRevisionService iParametrageRevisionService;
 	
-	@PostMapping("/parametrage/update/voiture/{id}")
-	public ParametrageRevisionDto updateParametrageRevision(@RequestBody ParametrageRevisionDto dto,@PathVariable Integer idvoiture)
+	@PostMapping("/parametrage/update/voiture/{idVoiture}")
+	public ParametrageRevisionDto updateParametrageRevision(@RequestBody ParametrageRevisionDto dto,@PathVariable Integer idVoiture)
 	{
-		return iParametrageRevisionService.updateParametrageRevision(dto, idvoiture);
+		return iParametrageRevisionService.updateParametrageRevision(dto, idVoiture);
 	}
 	
 	@GetMapping("/parametrage/findAll")
