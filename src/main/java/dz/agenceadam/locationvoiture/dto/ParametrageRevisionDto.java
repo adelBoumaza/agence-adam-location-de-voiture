@@ -9,7 +9,7 @@ public class ParametrageRevisionDto {
 	private Integer filtreAhuile;
 	private Integer filtreAgasoil;
 	private Integer bougiesAllumage;
-	private Integer KitDistribution;
+	private Integer kitDistribution;
 	private Integer kitDembrayage;
 	private Integer suspensions;
 	private Integer plaquettes;
@@ -73,14 +73,8 @@ public class ParametrageRevisionDto {
 		this.bougiesAllumage = bougiesAllumage;
 	}
 
-	public Integer getKitDistribution() {
-		return KitDistribution;
-	}
-
-	public void setKitDistribution(Integer kitDistribution) {
-		KitDistribution = kitDistribution;
-	}
-
+	
+	
 	public Integer getKitDembrayage() {
 		return kitDembrayage;
 	}
@@ -123,6 +117,16 @@ public class ParametrageRevisionDto {
 
 	public Integer getRotules() {
 		return rotules;
+	}
+	
+	
+
+	public Integer getKitDistribution() {
+		return kitDistribution;
+	}
+
+	public void setKitDistribution(Integer kitDistribution) {
+		this.kitDistribution = kitDistribution;
 	}
 
 	public void setRotules(Integer rotules) {
@@ -173,7 +177,7 @@ public class ParametrageRevisionDto {
 	public String toString() {
 		return "ParametrageRevisionDto [id=" + id + ", vidange=" + vidange + ", filtreAair=" + filtreAair
 				+ ", filtreAhuile=" + filtreAhuile + ", filtreAgasoil=" + filtreAgasoil + ", bougiesAllumage="
-				+ bougiesAllumage + ", KitDistribution=" + KitDistribution + ", kitDembrayage=" + kitDembrayage
+				+ bougiesAllumage + ", kitDistribution=" + kitDistribution + ", kitDembrayage=" + kitDembrayage
 				+ ", suspensions=" + suspensions + ", plaquettes=" + plaquettes + ", pneus=" + pneus + ", roulements="
 				+ roulements + ", rotules=" + rotules + ", idVoiture=" + idVoiture + ", marque=" + marque + ", modele="
 				+ modele + ", couleur=" + couleur + ", immatricule=" + immatricule + "]";
