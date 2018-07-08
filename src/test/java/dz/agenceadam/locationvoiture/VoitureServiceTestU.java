@@ -39,7 +39,7 @@ public class VoitureServiceTestU {
 		VoitureDto voitureDto = GenericBuilder.of(VoitureDto::new)
 				.with(VoitureDto::setMarque, "RENAULT2")
 				.with(VoitureDto::setEnergie, "essance")
-				.with(VoitureDto::setImmatricule, "1111111111")
+				.with(VoitureDto::setImmatricule, "124556")
 				.build();
 		voitureDto.setListeAssuranceDto(listeAssuranceDto);
 		if(!save)

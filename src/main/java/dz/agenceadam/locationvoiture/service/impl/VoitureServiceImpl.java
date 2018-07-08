@@ -7,14 +7,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import dz.agenceadam.locationvoiture.dto.AssuranceDto;
 import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Assurance;
+import dz.agenceadam.locationvoiture.entities.ParametrageRevision;
 import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.repository.AssuranceRepository;
+import dz.agenceadam.locationvoiture.repository.ParametrageRevisionRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
@@ -29,6 +29,9 @@ public class VoitureServiceImpl implements IVoitureService{
 	
 	@Autowired
 	private AssuranceRepository assuranceRepository;
+	
+	@Autowired
+	private ParametrageRevisionRepository parametrageRevisionRepository;
 
 	@Override
 	public VoitureDto saveVoitureWidthUser(VoitureDto voitureDto,Integer idUser,Boolean save) throws DataFoundedException 
@@ -92,7 +95,30 @@ public class VoitureServiceImpl implements IVoitureService{
 				
 			});
 		}
+		if(save)
+		{
+			addParametrageRevision(voiture);
+		}
 		return voitureDto;
+	}
+
+	private void addParametrageRevision(Voiture voiture) {
+		ParametrageRevision parametrageRevision = GenericBuilder.of(ParametrageRevision::new)
+				.with(ParametrageRevision::setVidange, 10000)
+				.with(ParametrageRevision::setBougiesAllumage, 100000)
+				.with(ParametrageRevision::setFiltreAair, 20000)
+				.with(ParametrageRevision::setFiltreAgasoil, 60000)
+				.with(ParametrageRevision::setFiltreAhuile, 20000)
+				.with(ParametrageRevision::setKitDembrayage, 100000)
+				.with(ParametrageRevision::setKitDistribution, 60000)
+				.with(ParametrageRevision::setPlaquettes, 40000)
+				.with(ParametrageRevision::setPneus, 60000)
+				.with(ParametrageRevision::setRotules, 40000)
+				.with(ParametrageRevision::setRoulements, 100000)
+				.with(ParametrageRevision::setSuspensions, 100000)
+				.with(ParametrageRevision::setVoiture, voiture)
+				.build();
+		parametrageRevisionRepository.save(parametrageRevision);
 	}
 
 	@Override
