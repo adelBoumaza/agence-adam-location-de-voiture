@@ -31,4 +31,5 @@ public class ParametrageRevisionController {
 	public List<ParametrageRevisionDto> findAllParametrageRevision(){
 		return iParametrageRevisionService.findAllParametrageRevision();
 	}
+	//test
 }
