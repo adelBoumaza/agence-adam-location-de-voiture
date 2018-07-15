@@ -37,7 +37,7 @@ public class ClientServiceImpl implements IClientService{
 	}
 	
 
-	public ClientDto saveClientWidthUser(ClientDto clientDto, Integer idUser,Boolean save) throws ParseException, DataFoundedException{
+	public ClientDto saveOrUpdate(ClientDto clientDto, Integer idUser,Boolean save) throws ParseException, DataFoundedException{
 		Client client = GenericBuilder.of(Client::new)
 				.with(Client::setActived, clientDto.getActived())
 				.with(Client::setAdresse, clientDto.getAdresse())

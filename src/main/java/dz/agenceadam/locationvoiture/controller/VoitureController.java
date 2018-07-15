@@ -31,6 +31,6 @@ public class VoitureController {
 	@PostMapping("/voiture/saveVoiture/withUser/{idUser}/action/{save}")
 	public VoitureDto save(@RequestBody VoitureDto voitureDto,@PathVariable Integer idUser,@PathVariable Boolean save) throws DataFoundedException
 	{
-		return voitureService.saveVoitureWidthUser(voitureDto, idUser,save);
+		return voitureService.saveOrUpdate(voitureDto, idUser,save);
 	}
 }

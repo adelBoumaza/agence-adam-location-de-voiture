@@ -47,7 +47,7 @@ public class VoitureServiceTestU {
 			voitureDto.setId(4);
 		}
         
-		iVoitureService.saveVoitureWidthUser(voitureDto, 1, save);
+		iVoitureService.saveOrUpdate(voitureDto, 1, save);
 	}
 	@Test
 	public void findAllVoitureActived()
