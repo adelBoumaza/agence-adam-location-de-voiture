@@ -18,17 +18,17 @@ import dz.agenceadam.locationvoiture.service.IParametrageRevisionService;
 public class ParametrageRevisionController {
 
 	//comment
-	@Autowired
-	private IParametrageRevisionService iParametrageRevisionService;
-	
-	@PostMapping("/parametrage/update/voiture/{id}")
-	public ParametrageRevisionDto updateParametrageRevision(@RequestBody ParametrageRevisionDto dto,@PathVariable Integer idvoiture)
-	{
-		return iParametrageRevisionService.updateParametrageRevision(dto, idvoiture);
-	}
-	
-	@GetMapping("/parametrage/findAll")
-	public List<ParametrageRevisionDto> findAllParametrageRevision(){
-		return iParametrageRevisionService.findAllParametrageRevision();
-	}
+		@Autowired
+		private IParametrageRevisionService iParametrageRevisionService;
+		
+		@PostMapping("/parametrage/update/voiture/{idVoiture}")
+		public ParametrageRevisionDto updateParametrageRevision(@RequestBody ParametrageRevisionDto dto,@PathVariable Integer idVoiture)
+		{
+			return iParametrageRevisionService.updateParametrageRevision(dto, idVoiture);
+		}
+		
+		@GetMapping("/parametrage/findAll")
+		public List<ParametrageRevisionDto> findAllParametrageRevision(){
+			return iParametrageRevisionService.findAllParametrageRevision();
+		}
 }
