@@ -17,7 +17,7 @@ import dz.agenceadam.locationvoiture.service.IParametrageRevisionService;
 @RequestMapping(value="/api/v1")
 public class ParametrageRevisionController {
 
-	//comment
+	//comment 2
 	@Autowired
 	private IParametrageRevisionService iParametrageRevisionService;
 	
