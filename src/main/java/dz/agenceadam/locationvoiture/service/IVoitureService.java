@@ -9,7 +9,7 @@ import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 public interface IVoitureService {
 
 
-	VoitureDto saveVoitureWidthUser(VoitureDto voitureDto,Integer idUser,Boolean save) throws DataFoundedException ;
+	VoitureDto saveOrUpdate(VoitureDto voitureDto,Integer idUser,Boolean save) throws DataFoundedException ;
 	
 	List<Voiture> findAll();
 	
