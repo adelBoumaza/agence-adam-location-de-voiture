@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "TB_CLIENT")
+@Table(name = "tb_client")
 public class Client  implements Serializable{
 
 	@Id

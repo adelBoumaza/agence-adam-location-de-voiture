@@ -1,8 +1,10 @@
 package dz.agenceadam.locationvoiture.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,11 @@ public class FicheTechniqueController {
 	public FicheTechniqueDto saveOrUpdate(FicheTechniqueDto dto,@PathVariable Integer idVoiture,@PathVariable Boolean save) throws DataFoundedException, ParseException
 	{
 		return ficheTechniqueService.saveOrUpdate(dto, idVoiture, save);
+	}
+	
+	@GetMapping("/ficheTechnique/searcheficheTechnique")
+	public List<Object[]> findAll()
+	{
+		return ficheTechniqueService.findAllByVoiture();
 	}
 }

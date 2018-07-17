@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
-@Table(name="TB_PARAMETRAGE_REVISION")
+@Table(name="tb_parametrage_revision")
 public class ParametrageRevision implements Serializable{
 	
 	@Id
