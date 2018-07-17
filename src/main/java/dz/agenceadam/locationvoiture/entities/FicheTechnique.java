@@ -19,21 +19,26 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 @Entity
-@Table(name = "TB_FICHE_TECHNIQUE")
+@Table(name = "tb_fiche_technique")
 public class FicheTechnique implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="PK_ID")
+	@Column(name="pk_id")
 	private Integer id;
+	@Column(name="actived")
 	private Boolean actived;
+	@Column(name="km_revision")
 	private Integer kmRevision;
+	@Column(name="prix_intervention")
 	private BigDecimal prixIntervention;
+	@Column(name="type_revision")
 	private String typeRevision;
 	@Temporal(TemporalType.DATE)
+	@Column(name="date_intervention")
 	private Date dateIntervention;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "FK_VOITURE")
+	@JoinColumn(name = "fk_voiture")
 	private Voiture voiture;
 	
 	public FicheTechnique() {

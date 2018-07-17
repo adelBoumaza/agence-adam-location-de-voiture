@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @SuppressWarnings("serial")
-@Table(name = "TB_VOITURE")
+@Table(name = "tb_voiture")
 @Entity
 public class Voiture  implements Serializable{
    

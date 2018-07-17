@@ -2,6 +2,7 @@ package dz.agenceadam.locationvoiture.service.impl;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -53,6 +54,11 @@ public class FicheTechniqueServiceImpl implements IFicheTechniqueService {
 		ficheTechniqueRepository.save(ficheTechnique);
 		
 		return dto;
+	}
+
+	@Override
+	public List<Object[]> findAllByVoiture() {
+		return ficheTechniqueRepository.findAllFicheTechniqueByVoiture();
 	}
 
 }
