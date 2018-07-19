@@ -127,5 +127,10 @@ public class VoitureServiceImpl implements IVoitureService{
 		return voitureRepository.findAllVoitureActived();
 	}
 
+	@Override
+	public List<String> findVoitureByMarque(String marque) {
+		return voitureRepository.findVoitureByMarque(marque);
+	}
+
 
 }

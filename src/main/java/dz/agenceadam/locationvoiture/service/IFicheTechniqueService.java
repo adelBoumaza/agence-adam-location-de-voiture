@@ -5,10 +5,11 @@ import java.util.List;
 
 import dz.agenceadam.locationvoiture.dto.FicheTechniqueDto;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
+import dz.agenceadam.locationvoiture.search.FicheTechniqueObjectSearch;
 
 public interface IFicheTechniqueService {
 	
-	List<Object[]> findAllByVoiture();
+	List<Object[]> findAllByVoiture(FicheTechniqueObjectSearch objectSearch);
 
 	FicheTechniqueDto saveOrUpdate(FicheTechniqueDto dto,Integer idVoiture,Boolean save) throws DataFoundedException, ParseException;
 }

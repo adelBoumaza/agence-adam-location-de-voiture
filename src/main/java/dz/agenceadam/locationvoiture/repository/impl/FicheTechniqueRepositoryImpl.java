@@ -11,10 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import dz.agenceadam.locationvoiture.dao.util.PersistenceUtil;
 import dz.agenceadam.locationvoiture.repository.custom.FicheTechniqueRepositoryCustom;
+import dz.agenceadam.locationvoiture.search.FicheTechniqueObjectSearch;
 public class FicheTechniqueRepositoryImpl extends PersistenceUtil implements FicheTechniqueRepositoryCustom {
 
 	@Override
-	public List<Object[]> findAllFicheTechniqueByVoiture() {
+	public List<Object[]> findAllFicheTechniqueByVoiture(FicheTechniqueObjectSearch objectSearch) {
 		StringBuilder sb = new StringBuilder();
 		//Map<String, Object> params = new HashMap<String, Object>();
 		final String req = "Select ft.pk_id as idFT,ft.km_revision,ft.prix_intervention,ft.type_revision," + 
@@ -35,23 +36,22 @@ public class FicheTechniqueRepositoryImpl extends PersistenceUtil implements Fic
 				") AS REST_A_ROULER " + 
 				"FROM tb_fiche_technique ft " + 
 				"JOIN tb_voiture v ON v.pk_id = ft.fk_voiture " + 
-				"JOIN tb_parametrage_revision tbp on tbp.fk_voiture = v.pk_id " + 
-				"order by ft.date_intervention desc";
+				"JOIN tb_parametrage_revision tbp on tbp.fk_voiture = v.pk_id ";
 		sb.append(req);
-/*		if (dto != null) {
-			if (dto.getTypeRevision() != null
-					&& !dto.getTypeRevision().isEmpty()) 
+		if (objectSearch != null) {
+			if (objectSearch.getTypeRevision() != null
+					&& !objectSearch.getTypeRevision().isEmpty()) 
 			{
-				sb.append(" AND ft.type_revision =?1");
-				params.put("typeRevision", dto.getTypeRevision());
+				sb.append(" AND ft.type_revision ='"+objectSearch.getTypeRevision()+"'");
+				//params.put("typeRevision", dto.getTypeRevision());
 			}
-			if (dto.getIdVoiture() != null
-					&& dto.getIdVoiture() != 0) 
+			if (objectSearch.getIdVoiture() != null
+					&& objectSearch.getIdVoiture() != 0) 
 			{
-				sb.append(" AND v.pk_id =?2 ");
+				sb.append(" AND v.pk_id ="+objectSearch.getIdVoiture());
 			}
-		}*/
-		//sb.append(" order by ft.date_intervention desc");
+		}
+		sb.append(" order by ft.date_intervention desc");
 		Query query = entityManager.createNativeQuery(sb.toString());
 		
 /*		System.out.println(query.getParameters().size());

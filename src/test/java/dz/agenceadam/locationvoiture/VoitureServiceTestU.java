@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class VoitureServiceTestU {
 	private IVoitureService iVoitureService;
 	
 	@Test
+	@Ignore
 	public void saveVoiture() throws DataFoundedException
 	{
 		Boolean save = Boolean.TRUE;
@@ -49,9 +51,18 @@ public class VoitureServiceTestU {
         
 		iVoitureService.saveOrUpdate(voitureDto, 1, save);
 	}
+	
 	@Test
+	@Ignore
 	public void findAllVoitureActived()
 	{
 		iVoitureService.findAll();
+	}
+	
+	@Test
+	public void findAllByMarque()
+	{
+		List<String> data = iVoitureService.findVoitureByMarque("PEUGEOT");
+		System.out.println(data);
 	}
 }

@@ -33,4 +33,10 @@ public class VoitureController {
 	{
 		return voitureService.saveOrUpdate(voitureDto, idUser,save);
 	}
+	
+	@GetMapping("/voiture/findVoitureByMarque/{marque}")
+	public List<String> findAllModeleByMarque(@PathVariable String marque)
+	{
+		return voitureService.findVoitureByMarque(marque);
+	}
 }
