@@ -50,6 +50,12 @@ public class FicheTechniqueRepositoryImpl extends PersistenceUtil implements Fic
 			{
 				sb.append(" AND v.pk_id ="+objectSearch.getIdVoiture());
 			}
+			
+			if (objectSearch.getMarque() != null
+					&& ! objectSearch.getMarque().isEmpty()) 
+			{
+				sb.append(" AND v.marque ='"+objectSearch.getMarque()+"'");
+			}
 		}
 		sb.append(" order by ft.date_intervention desc");
 		Query query = entityManager.createNativeQuery(sb.toString());
