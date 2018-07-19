@@ -35,7 +35,7 @@ public class VoitureController {
 	}
 	
 	@GetMapping("/voiture/findVoitureByMarque/{marque}")
-	public List<String> findAllModeleByMarque(@PathVariable String marque)
+	public List<Voiture> findAllModeleByMarque(@PathVariable String marque)
 	{
 		return voitureService.findVoitureByMarque(marque);
 	}

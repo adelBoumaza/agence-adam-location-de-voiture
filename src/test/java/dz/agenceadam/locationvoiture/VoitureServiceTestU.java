@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dz.agenceadam.locationvoiture.dto.AssuranceDto;
 import dz.agenceadam.locationvoiture.dto.VoitureDto;
+import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
@@ -62,7 +63,7 @@ public class VoitureServiceTestU {
 	@Test
 	public void findAllByMarque()
 	{
-		List<String> data = iVoitureService.findVoitureByMarque("PEUGEOT");
+		List<Voiture> data = iVoitureService.findVoitureByMarque("PEUGEOT");
 		System.out.println(data);
 	}
 }
