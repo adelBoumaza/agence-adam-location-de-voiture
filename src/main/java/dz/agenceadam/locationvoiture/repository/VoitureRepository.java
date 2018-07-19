@@ -13,6 +13,6 @@ public interface VoitureRepository extends JpaRepository<Voiture, Integer>,Voitu
 	@Query("SELECT v FROM Voiture v WHERE v.immatricule =?1")
 	Voiture findVoitureByImmatricule(String immatricule);
 	
-	@Query("SELECT v.modele FROM Voiture v WHERE v.marque =?1")
-	List<String> findVoitureByMarque(String marque);
+	@Query("SELECT v.id,v.modele FROM Voiture v WHERE v.marque =?1")
+	List<Voiture> findVoitureByMarque(String marque);
 }

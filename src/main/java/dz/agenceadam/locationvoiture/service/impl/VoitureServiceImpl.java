@@ -128,7 +128,7 @@ public class VoitureServiceImpl implements IVoitureService{
 	}
 
 	@Override
-	public List<String> findVoitureByMarque(String marque) {
+	public List<Voiture> findVoitureByMarque(String marque) {
 		return voitureRepository.findVoitureByMarque(marque);
 	}
 
