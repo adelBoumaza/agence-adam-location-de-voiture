@@ -13,4 +13,6 @@ public interface IVoitureService {
 	
 	List<Voiture> findAll();
 	
+	List<String> findVoitureByMarque(String marque);
+	
 }

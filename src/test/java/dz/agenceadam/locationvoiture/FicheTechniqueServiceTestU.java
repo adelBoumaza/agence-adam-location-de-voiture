@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dz.agenceadam.locationvoiture.dto.FicheTechniqueDto;
 import dz.agenceadam.locationvoiture.entities.FicheTechnique;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
+import dz.agenceadam.locationvoiture.search.FicheTechniqueObjectSearch;
 import dz.agenceadam.locationvoiture.service.IFicheTechniqueService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
 
@@ -41,8 +42,10 @@ public class FicheTechniqueServiceTestU {
 	@Test
 	public void findAll()
 	{
-		
-		List<Object[]> data = ficheTechniqueService.findAllByVoiture();
+		FicheTechniqueObjectSearch search = new FicheTechniqueObjectSearch();
+		search.setTypeRevision("Vidange");
+		search.setIdVoiture(21);
+		List<Object[]> data = ficheTechniqueService.findAllByVoiture(search);
 		System.out.println(data.size());
 		data.forEach(x->{
 			System.out.print(x[0]+"--");

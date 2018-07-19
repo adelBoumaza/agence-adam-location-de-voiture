@@ -14,6 +14,7 @@ import dz.agenceadam.locationvoiture.entities.FicheTechnique;
 import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.repository.FicheTechniqueRepository;
+import dz.agenceadam.locationvoiture.search.FicheTechniqueObjectSearch;
 import dz.agenceadam.locationvoiture.service.IFicheTechniqueService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
 import dz.agenceadam.locationvoiture.util.IConstant;
@@ -57,8 +58,8 @@ public class FicheTechniqueServiceImpl implements IFicheTechniqueService {
 	}
 
 	@Override
-	public List<Object[]> findAllByVoiture() {
-		return ficheTechniqueRepository.findAllFicheTechniqueByVoiture();
+	public List<Object[]> findAllByVoiture(FicheTechniqueObjectSearch objectSearch) {
+		return ficheTechniqueRepository.findAllFicheTechniqueByVoiture(objectSearch);
 	}
 
 }
