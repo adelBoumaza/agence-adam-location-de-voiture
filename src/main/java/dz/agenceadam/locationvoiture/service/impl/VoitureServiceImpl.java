@@ -137,7 +137,7 @@ public class VoitureServiceImpl implements IVoitureService{
 	public Object[] findLastAssuranceVoiture(Integer id) throws DataFoundedException {
 		
 		Object [] data = voitureRepository.findLastAssuranceVoiture(id);
-		if(data == null)
+		if(data[0] == null)
 		{
 			throw new DataFoundedException("l'assurance not existe");
 		}
