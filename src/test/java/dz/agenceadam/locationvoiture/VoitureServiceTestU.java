@@ -61,9 +61,17 @@ public class VoitureServiceTestU {
 	}
 	
 	@Test
+	@Ignore
 	public void findAllByMarque()
 	{
 		List<Voiture> data = iVoitureService.findVoitureByMarque("PEUGEOT");
 		System.out.println(data);
+	}
+	
+	@Test
+	public void findVoiture() throws DataFoundedException
+	{
+		Object[] voiture = iVoitureService.findLastAssuranceVoiture(20);
+		System.out.println(voiture[0].toString());
 	}
 }

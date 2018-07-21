@@ -15,4 +15,6 @@ public interface IVoitureService {
 	
 	List<Voiture> findVoitureByMarque(String marque);
 	
+	Object[] findLastAssuranceVoiture(Integer id) throws DataFoundedException;
+	
 }

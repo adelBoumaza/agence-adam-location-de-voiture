@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Service;
 import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Assurance;
@@ -130,6 +131,17 @@ public class VoitureServiceImpl implements IVoitureService{
 	@Override
 	public List<Voiture> findVoitureByMarque(String marque) {
 		return voitureRepository.findVoitureByMarque(marque);
+	}
+
+	@Override
+	public Object[] findLastAssuranceVoiture(Integer id) throws DataFoundedException {
+		
+		Object [] data = voitureRepository.findLastAssuranceVoiture(id);
+		if(data == null)
+		{
+			throw new DataFoundedException("l'assurance not existe");
+		}
+		return data;
 	}
 
 
