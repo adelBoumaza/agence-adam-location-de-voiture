@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.repository.custom.VoitureRepositoryCustom;
 
+
 public interface VoitureRepository extends JpaRepository<Voiture, Integer>,VoitureRepositoryCustom{
 
 	@Query("SELECT v FROM Voiture v WHERE v.immatricule =?1")
@@ -15,4 +16,11 @@ public interface VoitureRepository extends JpaRepository<Voiture, Integer>,Voitu
 	
 	@Query("SELECT v.id,v.modele FROM Voiture v WHERE v.marque =?1")
 	List<Voiture> findVoitureByMarque(String marque);
+	
+	@Query
+	(
+		value = "select max(a.date_expiration) from tb_voiture v join tb_assurance a on v.pk_id = a.fk_voiture where v.pk_id=?"
+		,nativeQuery = true
+	)
+	Object[] findLastAssuranceVoiture(Integer id);
 }
