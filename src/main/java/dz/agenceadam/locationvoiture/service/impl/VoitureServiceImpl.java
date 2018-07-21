@@ -1,6 +1,7 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -139,8 +140,17 @@ public class VoitureServiceImpl implements IVoitureService{
 		Object [] data = voitureRepository.findLastAssuranceVoiture(id);
 		if(data[0] == null)
 		{
-			throw new DataFoundedException("l'assurance not existe");
+			throw new DataFoundedException("l'assurance n'existe pas dans la base de données");
+		}else
+		{
+			Date date = (Date) data[0];
+			if(date.before(new Date()))
+			{
+				throw new DataFoundedException("La date de l'assurance est Expirée : "+data[0]);
+			}
+			
 		}
+		
 		return data;
 	}
 

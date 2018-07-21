@@ -71,7 +71,7 @@ public class VoitureServiceTestU {
 	@Test
 	public void findVoiture() throws DataFoundedException
 	{
-		Object[] voiture = iVoitureService.findLastAssuranceVoiture(23);
+		Object[] voiture = iVoitureService.findLastAssuranceVoiture(22);
 		System.out.println(voiture[0].toString());
 	}
 }
