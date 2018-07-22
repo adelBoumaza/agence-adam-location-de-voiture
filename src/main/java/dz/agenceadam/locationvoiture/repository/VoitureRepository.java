@@ -2,6 +2,7 @@ package dz.agenceadam.locationvoiture.repository;
 
 import java.util.List;
 
+import org.jboss.logging.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -19,8 +20,8 @@ public interface VoitureRepository extends JpaRepository<Voiture, Integer>,Voitu
 	
 	@Query
 	(
-		value = "select max(a.date_expiration),v.km_actuel from tb_voiture v join tb_assurance a on v.pk_id = a.fk_voiture where v.pk_id=?"
+		value = "select max(a.date_expiration),v.km_actuel from tb_voiture v join tb_assurance a on v.pk_id = a.fk_voiture where v.pk_id=?1"
 		,nativeQuery = true
 	)
-	Object[] findLastAssuranceVoiture(Integer id);
+	List<Object[]> findLastAssuranceVoiture(Integer id);
 }

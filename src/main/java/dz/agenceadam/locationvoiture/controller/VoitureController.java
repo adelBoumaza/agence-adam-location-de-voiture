@@ -41,7 +41,7 @@ public class VoitureController {
 	}
 	
 	@GetMapping("/voiture/findLastAssuranceByVoiture/{idVoiture}")
-	public Object[] findLastAssuranceVoiture(@PathVariable Integer idVoiture) throws DataFoundedException
+	public List<Object[]> findLastAssuranceVoiture(@PathVariable Integer idVoiture) throws DataFoundedException
 	{
 		return voitureService.findLastAssuranceVoiture(idVoiture);
 	}

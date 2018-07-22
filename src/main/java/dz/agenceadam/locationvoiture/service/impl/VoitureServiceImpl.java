@@ -135,23 +135,23 @@ public class VoitureServiceImpl implements IVoitureService{
 	}
 
 	@Override
-	public Object[] findLastAssuranceVoiture(Integer id) throws DataFoundedException {
+	public List<Object[]> findLastAssuranceVoiture(Integer id) throws DataFoundedException {
 		
-		Object [] data = voitureRepository.findLastAssuranceVoiture(id);
-		if(data[0] == null)
+		List<Object[]>  data = voitureRepository.findLastAssuranceVoiture(id);
+		if(data.get(0)[0] == null)
 		{
 			throw new DataFoundedException("l'assurance n'existe pas dans la base de données");
 		}else
 		{
-			Date date = (Date) data[0];
+			Date date = (Date) data.get(0)[0];
 			if(date.before(new Date()))
 			{
-				throw new DataFoundedException("La date de l'assurance est Expirée : "+data[0]);
+				throw new DataFoundedException("La date de l'assurance est Expirée : "+date);
 			}
 			
 		}
 		
-		return data;
+		return voitureRepository.findLastAssuranceVoiture(id);
 	}
 
 
