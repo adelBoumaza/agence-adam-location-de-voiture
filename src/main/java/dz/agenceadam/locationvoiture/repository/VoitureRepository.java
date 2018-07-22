@@ -19,7 +19,7 @@ public interface VoitureRepository extends JpaRepository<Voiture, Integer>,Voitu
 	
 	@Query
 	(
-		value = "select max(a.date_expiration) from tb_voiture v join tb_assurance a on v.pk_id = a.fk_voiture where v.pk_id=?"
+		value = "select max(a.date_expiration),v.km_actuel from tb_voiture v join tb_assurance a on v.pk_id = a.fk_voiture where v.pk_id=?"
 		,nativeQuery = true
 	)
 	Object[] findLastAssuranceVoiture(Integer id);
