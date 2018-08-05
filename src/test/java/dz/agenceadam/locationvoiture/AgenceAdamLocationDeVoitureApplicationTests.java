@@ -1,6 +1,7 @@
 package dz.agenceadam.locationvoiture;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -9,14 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
-
-
+import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Role;
 import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.repository.RoleRepository;
 import dz.agenceadam.locationvoiture.repository.UserRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
+import dz.agenceadam.locationvoiture.service.IReservationService;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
 
@@ -26,6 +27,9 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	@Autowired
 	IClientService iClientService; 
+	
+	@Autowired
+	IReservationService reservationRepo;
 	
 	@Autowired
 	IVoitureService iVoitureService; 
@@ -44,6 +48,11 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	@Test
 	public void contextLoads() {
 
+		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(2, 2018,2);
+		
+		data.forEach(action->{
+			System.out.println(action);
+		});
 	}
 	
 	@Test
@@ -54,13 +63,9 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		iClientService.save(c);
 	}
 	
-	@Test
-	public void test2()
-	{
-
-	}
 	
 	@Test
+	@Ignore
 	public void test3()
 	{
 		Client client = GenericBuilder.of(Client::new)
@@ -85,10 +90,8 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		iUserRepository.save(user);
 		
 	}
+
 	
-	public void testStash()
-	{
-		System.out.println("tester le stash ");
-	}
+	
 
 }
