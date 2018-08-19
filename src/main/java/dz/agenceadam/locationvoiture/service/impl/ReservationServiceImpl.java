@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,6 @@ import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.repository.ReservationRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
 import dz.agenceadam.locationvoiture.service.IReservationService;
-import dz.agenceadam.locationvoiture.util.GenericBuilder;
 import dz.agenceadam.locationvoiture.util.Utilitaire;
 
 @Service
@@ -44,7 +41,7 @@ public class ReservationServiceImpl implements IReservationService{
 		{
 			voitures.forEach(v->{
 				
-				 ReservationResponseDto dto = new ReservationResponseDto(v.getId(), v.getMarque(), v.getModele()); 
+				 ReservationResponseDto dto = new ReservationResponseDto(v.getId(), v.getMarque(), v.getModele(),v.getImmatricule(),v.getPrixLocation(),v.getKilommetrage()); 
 				 days.forEach(i->{
 						 ReservationDaysDto day = new ReservationDaysDto(i, Boolean.TRUE);
 						 dto.getDays().add(day);
