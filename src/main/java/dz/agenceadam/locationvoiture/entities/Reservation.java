@@ -27,6 +27,8 @@ public class Reservation {
 	@Column(name = "pk_id")
 	private Integer id;
 	private Boolean nouveauClient;
+	@Column(name="actived")
+	private Boolean actived;
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_de_depart")
 	private Date dateDeDepart;
@@ -111,6 +113,14 @@ public class Reservation {
 	}
 	
 	
+
+	public Boolean getActived() {
+		return actived;
+	}
+
+	public void setActived(Boolean actived) {
+		this.actived = actived;
+	}
 
 	public BigDecimal getVersement() {
 		return versement;

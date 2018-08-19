@@ -3,11 +3,15 @@ package dz.agenceadam.locationvoiture.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ReservationResponseDto {
 
 	private Integer idVoiture;
 	private String marque;
 	private String modele;
+	private String immatricule;
+	private Double prixLocation;
+	private Double kmActuelle;
 	private List<ReservationDaysDto> days = new ArrayList<>();
 	
 	public ReservationResponseDto() {}
@@ -46,11 +50,40 @@ public class ReservationResponseDto {
 		this.days = days;
 	}
 
-	public ReservationResponseDto(Integer idVoiture, String marque, String modele) {
+	
+	public String getImmatricule() {
+		return immatricule;
+	}
+
+	public void setImmatricule(String immatricule) {
+		this.immatricule = immatricule;
+	}
+
+	public Double getPrixLocation() {
+		return prixLocation;
+	}
+
+	public void setPrixLocation(Double prixLocation) {
+		this.prixLocation = prixLocation;
+	}
+
+	public Double getKmActuelle() {
+		return kmActuelle;
+	}
+
+	public void setKmActuelle(Double kmActuelle) {
+		this.kmActuelle = kmActuelle;
+	}
+
+	public ReservationResponseDto(Integer idVoiture, String marque, String modele,
+			String immatricule,Double prixLocation,Double kmActuelle) {
 		super();
 		this.idVoiture = idVoiture;
 		this.marque = marque;
 		this.modele = modele;
+		this.immatricule = immatricule;
+		this.prixLocation = prixLocation;
+		this.kmActuelle = kmActuelle;
 	}
 
 	@Override
