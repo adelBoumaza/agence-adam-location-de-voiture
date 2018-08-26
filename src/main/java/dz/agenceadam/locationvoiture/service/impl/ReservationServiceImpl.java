@@ -1,5 +1,7 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -9,12 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDaysDto;
+import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
+import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Voiture;
+import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.repository.ReservationRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
 import dz.agenceadam.locationvoiture.service.IReservationService;
+import dz.agenceadam.locationvoiture.util.GenericBuilder;
+import dz.agenceadam.locationvoiture.util.IConstant;
 import dz.agenceadam.locationvoiture.util.Utilitaire;
 
 @Service
@@ -26,6 +33,9 @@ public class ReservationServiceImpl implements IReservationService{
 	
 	@Autowired
 	private VoitureRepository voitureRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
 	
 	
 	@Override
@@ -76,6 +86,61 @@ public class ReservationServiceImpl implements IReservationService{
 	
 		
 		return responses;
+	}
+
+
+	@Override
+	public ReservationDto saveOrUpdate(ReservationDto dto, boolean save) throws ParseException {
+		Reservation reservation = GenericBuilder.of(Reservation::new)
+				.with(Reservation::setActived, Boolean.TRUE)
+				.with(Reservation::setDateDeDepart, IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeDepart()))
+				.with(Reservation::setDateDeRetour, IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeRetour()))
+				.with(Reservation::setNombreDeJours, dto.getNombreDeJours())
+				.with(Reservation::setNouveauClient, dto.getNouveauClient())
+				.with(Reservation::setReservationEnAttente, dto.getReservationEnAttente())
+				.with(Reservation::setTotalTTC, dto.getTotalTTC())
+				.with(Reservation::setVersement, dto.getVersement())
+				.build();
+		Voiture voiture = GenericBuilder.of(Voiture::new).with(Voiture::setId, dto.getIdVoiture()).build();
+		Client client = null;
+		if(dto.getIdClient() == null)
+		{
+			client = GenericBuilder.of(Client::new)
+					.with(Client::setActived, Boolean.TRUE)
+					.with(Client::setAdresse, "RAS")
+					.with(Client::setClientBloque, Boolean.FALSE)
+					.with(Client::setDateDeNaissance, null)
+					.with(Client::setLieuDeNaissance, "RAS")
+					.with(Client::setEmail, dto.getMail())
+					.with(Client::setEndette,Boolean.FALSE)
+					.with(Client::setLieuObtentionPasseport,"RAS")
+					.with(Client::setLieuObtentionPermis,"RAS")
+					.with(Client::setNom,dto.getNom())
+					.with(Client::setNote,null)
+					.with(Client::setNumeroDePermis,"RAS")
+					.with(Client::setNumeroPasseport,"RAS")
+					.with(Client::setNumeTelOne,dto.getTel())
+					.with(Client::setNumTelTwo,"RAS")
+					.with(Client::setObservation,"Client enregisté via une réservation")
+					.with(Client::setPrenom,dto.getPrenom())
+					.with(Client::setSommeDette,0.0)
+					.with(Client::setTypeClient,Boolean.TRUE)
+					.with(Client::setDateObtentionPassport,null)
+					.with(Client::setDateObtentionPermis,null)
+					.build();
+			clientRepository.save(client);
+		}else
+		{
+			client = GenericBuilder.of(Client::new).with(Client::setId, dto.getIdClient()).build();
+		}
+		reservation.setClient(client);
+		reservation.setVoiture(voiture);
+		if(!save)
+		{
+			reservation.setId(dto.getId());
+		}
+		reservationRepository.save(reservation);
+		return dto;
 	}
 
 }

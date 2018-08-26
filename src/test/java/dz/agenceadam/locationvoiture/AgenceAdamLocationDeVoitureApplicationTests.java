@@ -1,5 +1,7 @@
 package dz.agenceadam.locationvoiture;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Role;
@@ -46,6 +50,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	
 	@Test
+	@Ignore
 	public void contextLoads() {
 
 		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(2, 2018,2);
@@ -53,6 +58,26 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		data.forEach(action->{
 			System.out.println(action);
 		});
+	}
+	@Test
+	public void saveOrUpdateResrvation() throws ParseException
+	{
+		ReservationDto dto = new ReservationDto();
+		dto.setDateDeDepart("05/08/2018");
+		dto.setDateDeRetour("22/08/2018");
+		dto.setIdClient(null);
+		dto.setIdVoiture(20);
+		dto.setNombreDeJours(new BigDecimal(1));
+		dto.setNouveauClient(Boolean.FALSE);
+		dto.setReservationEnAttente(Boolean.FALSE);
+		dto.setTotalTTC(new BigDecimal(3000));
+		dto.setVersement(BigDecimal.ZERO);
+		dto.setNom("Bounajma");
+		dto.setPrenom("Mohamed");
+		dto.setMail("mou.boun@gmail.com");
+		dto.setTel("0345544332");
+		reservationRepo.saveOrUpdate(dto, true);
+		
 	}
 	
 	@Test
