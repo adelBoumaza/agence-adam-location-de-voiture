@@ -50,16 +50,16 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	
 	@Test
-	@Ignore
 	public void contextLoads() {
 
-		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(2, 2018,2);
+		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(9, 2018,2);
 		
 		data.forEach(action->{
 			System.out.println(action);
 		});
 	}
 	@Test
+	@Ignore
 	public void saveOrUpdateResrvation() throws ParseException
 	{
 		ReservationDto dto = new ReservationDto();

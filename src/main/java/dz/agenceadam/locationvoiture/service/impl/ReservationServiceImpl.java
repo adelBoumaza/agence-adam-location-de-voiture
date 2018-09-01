@@ -67,14 +67,12 @@ public class ReservationServiceImpl implements IReservationService{
 					responses.forEach(response->{
 						if(reservation.getVoiture().getId() == response.getIdVoiture())
 						{
-							
 							calendar.setTime(reservation.getDateDeDepart());
 							int jourDepart = calendar.get(Calendar.DAY_OF_MONTH);
 							calendar.setTime(reservation.getDateDeRetour());
 							int jourRetour = calendar.get(Calendar.DAY_OF_MONTH);
-							
 							response.getDays().stream()
-							.filter(action -> action.getJour() >= jourDepart && action.getJour() < jourRetour)
+							.filter(action -> (action.getJour() >= jourDepart && action.getJour() < jourRetour) || (action.getJour() == jourDepart && action.getJour() == jourRetour))
 							.forEach(result->{
 								result.setDispo(Boolean.FALSE);
 							});
@@ -99,7 +97,7 @@ public class ReservationServiceImpl implements IReservationService{
 				.with(Reservation::setNouveauClient, dto.getNouveauClient())
 				.with(Reservation::setReservationEnAttente, dto.getReservationEnAttente())
 				.with(Reservation::setTotalTTC, dto.getTotalTTC())
-				.with(Reservation::setVersement, dto.getVersement())
+				.with(Reservation::setVersement, dto.getVersement() == null ? BigDecimal.ZERO:dto.getVersement())
 				.build();
 		Voiture voiture = GenericBuilder.of(Voiture::new).with(Voiture::setId, dto.getIdVoiture()).build();
 		Client client = null;
