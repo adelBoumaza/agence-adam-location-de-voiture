@@ -50,7 +50,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	
 	@Test
-	public void contextLoads() {
+	public void contextLoads() throws ParseException {
 
 		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(11, 2018,2);
 		

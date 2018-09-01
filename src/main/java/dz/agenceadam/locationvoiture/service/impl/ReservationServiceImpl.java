@@ -2,9 +2,13 @@ package dz.agenceadam.locationvoiture.service.impl;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +43,7 @@ public class ReservationServiceImpl implements IReservationService{
 	
 	
 	@Override
-	public List<ReservationResponseDto> allReservationByMonthAndYear(int month, int year, int idUser) {
+	public List<ReservationResponseDto> allReservationByMonthAndYear(int month, int year, int idUser)  {
 		
 		List<ReservationResponseDto> responses = new ArrayList<>();
 		List<Voiture> voitures = voitureRepository.findAllVoitureActived();
@@ -67,15 +71,30 @@ public class ReservationServiceImpl implements IReservationService{
 					responses.forEach(response->{
 						if(reservation.getVoiture().getId() == response.getIdVoiture())
 						{
-							calendar.setTime(reservation.getDateDeDepart());
-							int jourDepart = calendar.get(Calendar.DAY_OF_MONTH);
-							calendar.setTime(reservation.getDateDeRetour());
-							int jourRetour = calendar.get(Calendar.DAY_OF_MONTH);
-							response.getDays().stream()
-							.filter(action -> (action.getJour() >= jourDepart && action.getJour() < jourRetour) || (action.getJour() == jourDepart && action.getJour() == jourRetour))
+							
+							final Date dd = reservation.getDateDeDepart();
+							final Date dr = reservation.getDateDeRetour();
+							response.getDays().forEach(x->{
+								LocalDate localDate = LocalDate.of( year , month , x.getJour());
+						        Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+						        if( date1.after(dd) && (date1.before(dr) ||date1.equals(dr)))
+						        {
+						        	x.setDispo(Boolean.FALSE);
+						        }else if(date1.equals(dd) && date1.equals(dr))
+						        {
+						        	x.setDispo(Boolean.FALSE);
+						        }
+							});
+							/*response.getDays().stream()
+							.filter(action ->
+							(
+									action.getJour() >= jourDepart && action.getJour() < jourRetour) || 
+									(action.getJour() == jourDepart && action.getJour() == jourRetour)
+							)
 							.forEach(result->{
 								result.setDispo(Boolean.FALSE);
-							});
+								System.out.println(result);
+							});*/
 							
 						}
 					});
