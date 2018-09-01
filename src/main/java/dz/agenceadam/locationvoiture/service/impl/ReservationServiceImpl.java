@@ -77,12 +77,15 @@ public class ReservationServiceImpl implements IReservationService{
 							response.getDays().forEach(x->{
 								LocalDate localDate = LocalDate.of( year , month , x.getJour());
 						        Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-						        if( date1.after(dd) && (date1.before(dr) ||date1.equals(dr)))
+						        //1 sept > 
+						        if( (date1.after(dd) || date1.equals(dd)) && (date1.before(dr)))
 						        {
 						        	x.setDispo(Boolean.FALSE);
+									System.out.println(x);
 						        }else if(date1.equals(dd) && date1.equals(dr))
 						        {
 						        	x.setDispo(Boolean.FALSE);
+									System.out.println("ego "+x);
 						        }
 							});
 							/*response.getDays().stream()
