@@ -52,7 +52,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	@Test
 	public void contextLoads() {
 
-		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(9, 2018,2);
+		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(11, 2018,2);
 		
 		data.forEach(action->{
 			System.out.println(action);
