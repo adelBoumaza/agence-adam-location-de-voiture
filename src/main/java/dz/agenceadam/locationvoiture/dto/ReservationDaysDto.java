@@ -14,6 +14,7 @@ public class ReservationDaysDto {
 	private Date   dateDepart;
 	private Date   dateRetour;
 	private BigDecimal nbrJours;
+	private boolean debutReservation;
 	
 
 
@@ -86,11 +87,19 @@ public class ReservationDaysDto {
 	public void setNbrJours(BigDecimal nbrJours) {
 		this.nbrJours = nbrJours;
 	}
+	
+	public boolean getDebutReservation() {
+		return debutReservation;
+	}
+	public void setDebutReservation(boolean debutReservation) {
+		this.debutReservation = debutReservation;
+	}
 	@Override
 	public String toString() {
 		return "ReservationDaysDto [jour=" + jour + ", dispo=" + dispo + ", idClient=" + idClient + ", idReservation="
 				+ idReservation + ", nomClient=" + nomClient + ", prenomClient=" + prenomClient + ", dateDepart="
-				+ dateDepart + ", dateRetour=" + dateRetour + ", nbrJours=" + nbrJours + "]";
+				+ dateDepart + ", dateRetour=" + dateRetour + ", nbrJours=" + nbrJours + ", debutReservation="
+				+ debutReservation + "]";
 	}
 	
 	

@@ -7,8 +7,10 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,6 @@ public class ReservationServiceImpl implements IReservationService{
 		List<Integer> days = Utilitaire.generateDaysOfMonthAndYears(year, month);
 		
 		List<Reservation> reservations = reservationRepository.allListeResrvationByMonthAndYear(month, year, idUser);
-		
 		if(!voitures.isEmpty())
 		{
 			voitures.forEach(v->{
@@ -83,6 +84,13 @@ public class ReservationServiceImpl implements IReservationService{
 						        {
 						        	setDisponibiliteReservation(reservation, j);
 						        }
+						        if(!j.getDispo())
+						        {
+						        	if(date1.equals(dd))
+						        	{
+						        		j.setDebutReservation(true);
+						        	}
+						        }
 							});
 							/*response.getDays().stream()
 							.filter(action ->
@@ -99,7 +107,8 @@ public class ReservationServiceImpl implements IReservationService{
 					});
 			});
 		}
-	
+		
+
 		
 		return responses;
 	}
