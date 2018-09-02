@@ -18,6 +18,7 @@ import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Role;
 import dz.agenceadam.locationvoiture.entities.User;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.repository.RoleRepository;
 import dz.agenceadam.locationvoiture.repository.UserRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
@@ -50,6 +51,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	
 	@Test
+	@Ignore
 	public void contextLoads() throws ParseException {
 
 		List<ReservationResponseDto> data = reservationRepo.allReservationByMonthAndYear(9, 2018,2);
@@ -59,12 +61,11 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		});
 	}
 	@Test
-	@Ignore
-	public void saveOrUpdateResrvation() throws ParseException
+	public void saveOrUpdateResrvation() throws ParseException, DataFoundedException
 	{
 		ReservationDto dto = new ReservationDto();
-		dto.setDateDeDepart("05/08/2018");
-		dto.setDateDeRetour("22/08/2018");
+		dto.setDateDeDepart("12/09/2018");
+		dto.setDateDeRetour("12/09/2018");
 		dto.setIdClient(null);
 		dto.setIdVoiture(20);
 		dto.setNombreDeJours(new BigDecimal(1));

@@ -14,6 +14,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Service;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDaysDto;
@@ -22,6 +23,7 @@ import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Voiture;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.repository.ReservationRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
@@ -127,7 +129,7 @@ public class ReservationServiceImpl implements IReservationService{
 
 
 	@Override
-	public ReservationDto saveOrUpdate(ReservationDto dto, boolean save) throws ParseException {
+	public ReservationDto saveOrUpdate(ReservationDto dto, boolean save) throws ParseException, DataFoundedException {
 		Reservation reservation = GenericBuilder.of(Reservation::new)
 				.with(Reservation::setActived, Boolean.TRUE)
 				.with(Reservation::setDateDeDepart, IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeDepart()))
@@ -140,43 +142,51 @@ public class ReservationServiceImpl implements IReservationService{
 				.build();
 		Voiture voiture = GenericBuilder.of(Voiture::new).with(Voiture::setId, dto.getIdVoiture()).build();
 		Client client = null;
-		if(dto.getIdClient() == null)
+		List<Reservation> existingReservation = reservationRepository.verifyExistingReservation(IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeDepart()), IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeRetour()), dto.getIdVoiture());
+		if(existingReservation.isEmpty())
 		{
-			client = GenericBuilder.of(Client::new)
-					.with(Client::setActived, Boolean.TRUE)
-					.with(Client::setAdresse, "RAS")
-					.with(Client::setClientBloque, Boolean.FALSE)
-					.with(Client::setDateDeNaissance, null)
-					.with(Client::setLieuDeNaissance, "RAS")
-					.with(Client::setEmail, dto.getMail())
-					.with(Client::setEndette,Boolean.FALSE)
-					.with(Client::setLieuObtentionPasseport,"RAS")
-					.with(Client::setLieuObtentionPermis,"RAS")
-					.with(Client::setNom,dto.getNom())
-					.with(Client::setNote,null)
-					.with(Client::setNumeroDePermis,"RAS")
-					.with(Client::setNumeroPasseport,"RAS")
-					.with(Client::setNumeTelOne,dto.getTel())
-					.with(Client::setNumTelTwo,"RAS")
-					.with(Client::setObservation,"Client enregisté via une réservation")
-					.with(Client::setPrenom,dto.getPrenom())
-					.with(Client::setSommeDette,0.0)
-					.with(Client::setTypeClient,Boolean.TRUE)
-					.with(Client::setDateObtentionPassport,null)
-					.with(Client::setDateObtentionPermis,null)
-					.build();
-			clientRepository.save(client);
-		}else
-		{
-			client = GenericBuilder.of(Client::new).with(Client::setId, dto.getIdClient()).build();
+			if(dto.getIdClient() == null)
+			{
+				client = GenericBuilder.of(Client::new)
+						.with(Client::setActived, Boolean.TRUE)
+						.with(Client::setAdresse, "RAS")
+						.with(Client::setClientBloque, Boolean.FALSE)
+						.with(Client::setDateDeNaissance, null)
+						.with(Client::setLieuDeNaissance, "RAS")
+						.with(Client::setEmail, dto.getMail())
+						.with(Client::setEndette,Boolean.FALSE)
+						.with(Client::setLieuObtentionPasseport,"RAS")
+						.with(Client::setLieuObtentionPermis,"RAS")
+						.with(Client::setNom,dto.getNom())
+						.with(Client::setNote,null)
+						.with(Client::setNumeroDePermis,"RAS")
+						.with(Client::setNumeroPasseport,"RAS")
+						.with(Client::setNumeTelOne,dto.getTel())
+						.with(Client::setNumTelTwo,"RAS")
+						.with(Client::setObservation,"Client enregisté via une réservation")
+						.with(Client::setPrenom,dto.getPrenom())
+						.with(Client::setSommeDette,0.0)
+						.with(Client::setTypeClient,Boolean.TRUE)
+						.with(Client::setDateObtentionPassport,null)
+						.with(Client::setDateObtentionPermis,null)
+						.build();
+				clientRepository.save(client);
+			}else
+			{
+				client = GenericBuilder.of(Client::new).with(Client::setId, dto.getIdClient()).build();
+			}
+			reservation.setClient(client);
+			reservation.setVoiture(voiture);
+			if(!save)
+			{
+				reservation.setId(dto.getId());
+			}
+			reservationRepository.save(reservation);
 		}
-		reservation.setClient(client);
-		reservation.setVoiture(voiture);
-		if(!save)
+		else
 		{
-			reservation.setId(dto.getId());
+			throw new DataFoundedException("les dates se chevauchent avec une autre reservation, veuillez modifier la date de retour svp!");
 		}
-		reservationRepository.save(reservation);
 		return dto;
 	}
 
