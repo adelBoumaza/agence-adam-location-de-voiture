@@ -66,26 +66,26 @@ public class ReservationServiceImpl implements IReservationService{
 		
 		if(!reservations.isEmpty())
 		{
-			Calendar calendar = Calendar.getInstance();
 			reservations.forEach(reservation->{
 					responses.forEach(response->{
 						if(reservation.getVoiture().getId() == response.getIdVoiture())
 						{
+							response.setIdClient(reservation.getClient().getId());
+							response.setNomClient(reservation.getClient().getNom());
+							response.setPrenomClient(reservation.getClient().getPrenom());
+							response.setIdReservation(reservation.getId());
 							
 							final Date dd = reservation.getDateDeDepart();
 							final Date dr = reservation.getDateDeRetour();
 							response.getDays().forEach(x->{
 								LocalDate localDate = LocalDate.of( year , month , x.getJour());
 						        Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-						        //1 sept > 
 						        if( (date1.after(dd) || date1.equals(dd)) && (date1.before(dr)))
 						        {
 						        	x.setDispo(Boolean.FALSE);
-									System.out.println(x);
 						        }else if(date1.equals(dd) && date1.equals(dr))
 						        {
 						        	x.setDispo(Boolean.FALSE);
-									System.out.println("ego "+x);
 						        }
 							});
 							/*response.getDays().stream()
