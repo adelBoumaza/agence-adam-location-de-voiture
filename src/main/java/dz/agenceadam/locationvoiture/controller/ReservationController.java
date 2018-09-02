@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
+import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.service.IReservationService;
 
 @RestController
@@ -30,7 +31,7 @@ public class ReservationController {
 	}
 	
 	@PostMapping(value="/reservation/saveOrUpdate/{save}")
-	public ReservationDto saveOrUpdateReservation(@RequestBody ReservationDto dto,@PathVariable boolean save) throws ParseException
+	public ReservationDto saveOrUpdateReservation(@RequestBody ReservationDto dto,@PathVariable boolean save) throws ParseException, DataFoundedException
 	{
 		return iReservationService.saveOrUpdate(dto, save);
 	}
