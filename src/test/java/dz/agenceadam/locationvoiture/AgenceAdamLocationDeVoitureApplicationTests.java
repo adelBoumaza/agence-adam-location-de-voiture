@@ -61,6 +61,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 		});
 	}
 	@Test
+	@Ignore
 	public void saveOrUpdateResrvation() throws ParseException, DataFoundedException
 	{
 		ReservationDto dto = new ReservationDto();
