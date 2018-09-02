@@ -13,10 +13,7 @@ public class ReservationResponseDto {
 	private Double prixLocation;
 	private Double kmActuelle;
 	private List<ReservationDaysDto> days = new ArrayList<>();
-	private Integer idClient;
-	private Integer idReservation;
-	private String nomClient;
-	private String prenomClient;
+
 	
 	public ReservationResponseDto() {}
 
@@ -89,48 +86,20 @@ public class ReservationResponseDto {
 		this.prixLocation = prixLocation;
 		this.kmActuelle = kmActuelle;
 	}
-	
-	
-
-	public Integer getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(Integer idClient) {
-		this.idClient = idClient;
-	}
-
-	public Integer getIdReservation() {
-		return idReservation;
-	}
-
-	public void setIdReservation(Integer idReservation) {
-		this.idReservation = idReservation;
-	}
-
-	public String getNomClient() {
-		return nomClient;
-	}
-
-	public void setNomClient(String nomClient) {
-		this.nomClient = nomClient;
-	}
-
-	public String getPrenomClient() {
-		return prenomClient;
-	}
-
-	public void setPrenomClient(String prenomClient) {
-		this.prenomClient = prenomClient;
-	}
 
 	@Override
 	public String toString() {
 		return "ReservationResponseDto [idVoiture=" + idVoiture + ", marque=" + marque + ", modele=" + modele
 				+ ", immatricule=" + immatricule + ", prixLocation=" + prixLocation + ", kmActuelle=" + kmActuelle
-				+ ", days=" + days + ", idClient=" + idClient + ", idReservation=" + idReservation + ", nomClient="
-				+ nomClient + ", prenomClient=" + prenomClient + "]";
+				+ ", days=" + days + "]";
 	}
+	
+	
+
+	
+
+
+	
 
 
 	
