@@ -140,6 +140,8 @@ public class ReservationServiceImpl implements IReservationService{
 				.with(Reservation::setReservationEnAttente, dto.getReservationEnAttente())
 				.with(Reservation::setTotalTTC, dto.getTotalTTC())
 				.with(Reservation::setVersement, dto.getVersement() == null ? BigDecimal.ZERO:dto.getVersement())
+				.with(Reservation::setHeureDepart, dto.getHeureDepart())
+				.with(Reservation::setHeureRetour, dto.getHeureRetour())
 				.build();
 		Voiture voiture = GenericBuilder.of(Voiture::new).with(Voiture::setId, dto.getIdVoiture()).build();
 		Client client = null;

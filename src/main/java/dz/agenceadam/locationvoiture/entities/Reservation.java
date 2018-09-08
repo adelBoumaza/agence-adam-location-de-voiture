@@ -35,6 +35,10 @@ public class Reservation {
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_de_retour")
 	private Date dateDeRetour;
+	@Column(name="heure_de_depart")
+	private String heureDepart;
+	@Column(name="heure_de_retour")
+	private String heureRetour;
 	@Column(name = "nombre_de_jours",scale = 2)
 	private BigDecimal nombreDeJours;
 	@Column(name="total_TTC",scale = 2)
@@ -128,6 +132,24 @@ public class Reservation {
 
 	public void setVersement(BigDecimal versement) {
 		this.versement = versement;
+	}
+	
+	
+
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+
+	public String getHeureRetour() {
+		return heureRetour;
+	}
+
+	public void setHeureRetour(String heureRetour) {
+		this.heureRetour = heureRetour;
 	}
 
 	@JsonIgnore
