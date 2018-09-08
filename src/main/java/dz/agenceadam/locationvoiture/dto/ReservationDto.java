@@ -19,6 +19,8 @@ public class ReservationDto {
 	private String prenom;
 	private String tel;
 	private String mail;
+	private String heureDepart;
+	private String heureRetour;
 	
 	
 	public ReservationDto() {
@@ -145,6 +147,24 @@ public class ReservationDto {
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	
+	
+
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+
+	public String getHeureRetour() {
+		return heureRetour;
+	}
+
+	public void setHeureRetour(String heureRetour) {
+		this.heureRetour = heureRetour;
 	}
 
 	@Override
