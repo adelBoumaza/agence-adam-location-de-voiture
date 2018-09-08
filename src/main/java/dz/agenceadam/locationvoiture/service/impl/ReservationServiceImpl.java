@@ -5,16 +5,12 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.datetime.DateTimeFormatAnnotationFormatterFactory;
 import org.springframework.stereotype.Service;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDaysDto;
@@ -79,7 +75,8 @@ public class ReservationServiceImpl implements IReservationService{
 							response.getDays().forEach(j->{
 								LocalDate localDate = LocalDate.of( year , month , j.getJour());
 						        Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-						        if( (date1.after(dd) || date1.equals(dd)) && (date1.before(dr)))
+						        //x > 1 || x == 1 && x < 5
+						        if( (date1.after(dd) || date1.equals(dd)) && (date1.before(dr) || date1.equals(dr)))
 						        {
 						        	setDisponibiliteReservation(reservation, j);
 						        }else if(date1.equals(dd) && date1.equals(dr))
@@ -91,6 +88,10 @@ public class ReservationServiceImpl implements IReservationService{
 						        	if(date1.equals(dd))
 						        	{
 						        		j.setDebutReservation(true);
+						        	}
+						        	if(date1.equals(dr))
+						        	{
+						        		j.setFinReservation(true);
 						        	}
 						        }
 							});
