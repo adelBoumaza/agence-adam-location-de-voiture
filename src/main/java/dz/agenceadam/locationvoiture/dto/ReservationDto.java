@@ -23,6 +23,24 @@ public class ReservationDto {
 	private String heureRetour;
 	
 	
+	public ReservationDto(Integer id, Boolean nouveauClient, Boolean actived, String dateDeDepart, String dateDeRetour,
+			BigDecimal nombreDeJours, BigDecimal totalTTC, BigDecimal versement, Boolean reservationEnAttente,
+			String heureDepart,
+			String heureRetour) {
+		super();
+		this.id = id;
+		this.nouveauClient = nouveauClient;
+		this.actived = actived;
+		this.dateDeDepart = dateDeDepart;
+		this.dateDeRetour = dateDeRetour;
+		this.nombreDeJours = nombreDeJours;
+		this.totalTTC = totalTTC;
+		this.versement = versement;
+		this.reservationEnAttente = reservationEnAttente;
+		this.heureDepart = heureDepart;
+		this.heureRetour = heureRetour;
+	}
+
 	public ReservationDto() {
 
 	}

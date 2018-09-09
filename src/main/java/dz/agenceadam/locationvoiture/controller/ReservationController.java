@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
+import dz.agenceadam.locationvoiture.dto.ReservationObjectDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
@@ -44,7 +45,7 @@ public class ReservationController {
 	}
 	
 	@GetMapping(value="/reservation/findOneReservation/{idReservation}")
-	public Reservation findOneReservation(@PathVariable Integer idReservation)
+	public ReservationObjectDto findOneReservation(@PathVariable Integer idReservation)
 	{
 		return iReservationService.findOneReservation(idReservation);
 	}

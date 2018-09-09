@@ -13,9 +13,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.dto.ReservationDaysDto;
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
+import dz.agenceadam.locationvoiture.dto.ReservationObjectDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
+import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Voiture;
@@ -207,9 +210,38 @@ public class ReservationServiceImpl implements IReservationService{
 
 
 	@Override
-	public Reservation findOneReservation(Integer idReservation) {
+	public ReservationObjectDto findOneReservation(Integer idReservation) {
 		Reservation reservation = reservationRepository.findOneReservation(idReservation);
-		return reservation;
+		ReservationObjectDto objectDto = new ReservationObjectDto();
+		ReservationDto reservationDto =  new ReservationDto(reservation.getId(), reservation.getNouveauClient(), 
+				reservation.getActived(), IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getDateDeDepart()),
+				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getDateDeRetour()),
+				reservation.getNombreDeJours(), reservation.getTotalTTC(), reservation.getVersement(), 
+				reservation.getReservationEnAttente(),  reservation.getHeureDepart(), reservation.getHeureRetour());
+		ClientDto clientDto = new ClientDto(reservation.getClient().getId(), reservation.getClient().getNom(), 
+				reservation.getClient().getPrenom(), 
+				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateDeNaissance()), 
+				reservation.getClient().getLieuDeNaissance(), 
+				reservation.getClient().getAdresse(),
+				reservation.getClient().getEmail(), reservation.getClient().getNumeTelOne(), 
+				reservation.getClient().getNumTelTwo(), reservation.getClient().getTypeClient(), 
+				reservation.getClient().getNumeroPasseport(), reservation.getClient().getNumeroDePermis(),
+				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPermis()), 
+				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPassport()), reservation.getClient().getLieuObtentionPermis(), 
+				reservation.getClient().getLieuObtentionPasseport(),
+				reservation.getClient().getObservation(), reservation.getClient().getNote(), 
+				reservation.getClient().getActived(), reservation.getClient().getEndette(),
+				reservation.getClient().getSommeDette(), reservation.getClient().getClientBloque());
+		VoitureDto voitureDto = new VoitureDto(reservation.getVoiture().getId(), reservation.getVoiture().getMarque(),
+				reservation.getVoiture().getModele(), reservation.getVoiture().getTypeVehicule(), reservation.getVoiture().getImmatricule(),
+				reservation.getVoiture().getPrixAchat(), reservation.getVoiture().getCouleur(), 
+				reservation.getVoiture().getKilommetrage(), reservation.getVoiture().getCarburantActuel(), 
+				reservation.getVoiture().getPrixLocation(), reservation.getVoiture().getRoueDeSecours(),
+				reservation.getVoiture().getAnneeFabrication(), reservation.getVoiture().getObservation(), reservation.getVoiture().getEnergie(), reservation.getVoiture().getActived());
+		objectDto.setClientDto(clientDto);
+		objectDto.setVoitureDto(voitureDto);
+		objectDto.setReservationDto(reservationDto);
+		return objectDto;
 	}
 
 }

@@ -41,6 +41,30 @@ public class VoitureDto {
 	private List<AssuranceDto> listeAssuranceDto = new ArrayList<>();
 	
 	
+	
+	
+	public VoitureDto(Integer id, String marque, String modele, String typeVehicule, String immatricule,
+			Double prixAchat, String couleur, Double kilommetrage, String carburantActuel, Double prixLocation,
+			Boolean roueDeSecours, Integer anneeFabrication, String observation, String energie, Boolean actived) {
+		super();
+		this.id = id;
+		this.marque = marque;
+		this.modele = modele;
+		this.typeVehicule = typeVehicule;
+		this.immatricule = immatricule;
+		this.prixAchat = prixAchat;
+		this.couleur = couleur;
+		this.kilommetrage = kilommetrage;
+		this.carburantActuel = carburantActuel;
+		this.prixLocation = prixLocation;
+		this.roueDeSecours = roueDeSecours;
+		this.anneeFabrication = anneeFabrication;
+		this.observation = observation;
+		this.energie = energie;
+		this.actived = actived;
+	}
+
+
 	public VoitureDto() {
 		
 	}
