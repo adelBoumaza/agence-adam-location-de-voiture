@@ -22,4 +22,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 			+ "AND (date_de_depart  >= ?1  and date_de_depart  <=  ?2  ) AND (date_de_retour >= ?1 ) "
 			+ "AND fk_voiture_reservation=?3 ",nativeQuery=true)
 	List<Reservation> verifyExistingReservation(Date dateDeDepart,Date dateDeRetour,Integer idVoiture);
+	
+	@Query(value="From Reservation r join fetch r.voiture join fetch r.client where r.id =?1")
+	Reservation findOneReservation(Integer idReservation);
 }

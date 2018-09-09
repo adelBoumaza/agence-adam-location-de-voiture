@@ -5,6 +5,7 @@ import java.util.List;
 
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
+import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 
 public interface IReservationService {
@@ -14,4 +15,6 @@ public interface IReservationService {
 	ReservationDto saveOrUpdate(ReservationDto dto,boolean save) throws ParseException, DataFoundedException;
 	
 	void annulerReservation(Integer idReservation);
+	
+	Reservation findOneReservation(Integer idReservation);
 }
