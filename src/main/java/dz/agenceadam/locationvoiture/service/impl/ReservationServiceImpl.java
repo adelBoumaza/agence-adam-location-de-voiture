@@ -205,4 +205,11 @@ public class ReservationServiceImpl implements IReservationService{
 		reservationRepository.save(reservation);
 	}
 
+
+	@Override
+	public Reservation findOneReservation(Integer idReservation) {
+		Reservation reservation = reservationRepository.findOneReservation(idReservation);
+		return reservation;
+	}
+
 }

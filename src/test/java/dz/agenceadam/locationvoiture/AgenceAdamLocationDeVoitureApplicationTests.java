@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Role;
 import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
@@ -49,6 +50,12 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Test
+	@Ignore
+	public void findOneReservation()
+	{
+		Reservation reservation = reservationRepo.findOneReservation(125);
+	}
 	
 	@Test
 	@Ignore
