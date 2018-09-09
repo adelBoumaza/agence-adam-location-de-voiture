@@ -16,6 +16,8 @@ public class ReservationDaysDto {
 	private BigDecimal nbrJours;
 	private boolean debutReservation;
 	private boolean finReservation;
+	private String heureDepart;
+	private String heureRetour;
 	
 
 
@@ -102,6 +104,20 @@ public class ReservationDaysDto {
 	}
 	public void setFinReservation(boolean finReservation) {
 		this.finReservation = finReservation;
+	}
+	
+	
+	public String getHeureDepart() {
+		return heureDepart;
+	}
+	public void setHeureDepart(String heureDepart) {
+		this.heureDepart = heureDepart;
+	}
+	public String getHeureRetour() {
+		return heureRetour;
+	}
+	public void setHeureRetour(String heureRetour) {
+		this.heureRetour = heureRetour;
 	}
 	@Override
 	public String toString() {

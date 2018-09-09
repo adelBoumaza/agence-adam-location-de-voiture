@@ -35,4 +35,10 @@ public class ReservationController {
 	{
 		return iReservationService.saveOrUpdate(dto, save);
 	}
+	
+	@PostMapping(value="/reservation/annuler/{idReservation}")
+	public void annulerReservation(@PathVariable Integer idReservation) 
+	{
+		iReservationService.annulerReservation(idReservation);
+	}
 }
