@@ -128,6 +128,7 @@ public class ReservationServiceImpl implements IReservationService{
 		j.setNbrJours(reservation.getNombreDeJours());
 		j.setHeureDepart(reservation.getHeureDepart());
 		j.setHeureRetour(reservation.getHeureRetour());
+		j.setReservationEnAttente(reservation.getReservationEnAttente());
 	}
 
 
@@ -139,7 +140,7 @@ public class ReservationServiceImpl implements IReservationService{
 				.with(Reservation::setDateDeRetour, IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeRetour()))
 				.with(Reservation::setNombreDeJours, dto.getNombreDeJours())
 				.with(Reservation::setNouveauClient, dto.getNouveauClient())
-				.with(Reservation::setReservationEnAttente, dto.getReservationEnAttente())
+				.with(Reservation::setReservationEnAttente, Boolean.TRUE)
 				.with(Reservation::setTotalTTC, dto.getTotalTTC())
 				.with(Reservation::setVersement, dto.getVersement() == null ? BigDecimal.ZERO:dto.getVersement())
 				.with(Reservation::setHeureDepart, dto.getHeureDepart())

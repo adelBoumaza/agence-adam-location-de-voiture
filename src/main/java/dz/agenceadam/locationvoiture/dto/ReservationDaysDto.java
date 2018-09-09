@@ -18,6 +18,7 @@ public class ReservationDaysDto {
 	private boolean finReservation;
 	private String heureDepart;
 	private String heureRetour;
+	private Boolean reservationEnAttente;
 	
 
 
@@ -118,6 +119,14 @@ public class ReservationDaysDto {
 	}
 	public void setHeureRetour(String heureRetour) {
 		this.heureRetour = heureRetour;
+	}
+	
+	
+	public Boolean getReservationEnAttente() {
+		return reservationEnAttente;
+	}
+	public void setReservationEnAttente(Boolean reservationEnAttente) {
+		this.reservationEnAttente = reservationEnAttente;
 	}
 	@Override
 	public String toString() {
