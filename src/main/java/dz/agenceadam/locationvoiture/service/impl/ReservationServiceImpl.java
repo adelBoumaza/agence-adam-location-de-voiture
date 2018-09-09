@@ -126,6 +126,8 @@ public class ReservationServiceImpl implements IReservationService{
 		j.setDateDepart(reservation.getDateDeDepart());
 		j.setDateRetour(reservation.getDateDeRetour());
 		j.setNbrJours(reservation.getNombreDeJours());
+		j.setHeureDepart(reservation.getHeureDepart());
+		j.setHeureRetour(reservation.getHeureRetour());
 	}
 
 
@@ -191,6 +193,15 @@ public class ReservationServiceImpl implements IReservationService{
 			throw new DataFoundedException("les dates se chevauchent avec une autre reservation, veuillez modifier la date de retour svp!");
 		}
 		return dto;
+	}
+
+
+	@Override
+	public void annulerReservation(Integer idReservation) {
+		
+		Reservation reservation = reservationRepository.findOne(idReservation);
+		reservation.setActived(Boolean.FALSE);
+		reservationRepository.save(reservation);
 	}
 
 }

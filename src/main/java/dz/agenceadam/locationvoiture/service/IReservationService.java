@@ -12,4 +12,6 @@ public interface IReservationService {
 	List<ReservationResponseDto> allReservationByMonthAndYear(int month,int year,int idUser) ;
 	
 	ReservationDto saveOrUpdate(ReservationDto dto,boolean save) throws ParseException, DataFoundedException;
+	
+	void annulerReservation(Integer idReservation);
 }
