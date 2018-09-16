@@ -1,6 +1,5 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
-import static org.mockito.Matchers.anyBoolean;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import dz.agenceadam.locationvoiture.dto.AssuranceDto;
 import dz.agenceadam.locationvoiture.entities.Assurance;
-import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.repository.AssuranceRepository;
 import dz.agenceadam.locationvoiture.service.IAssuranceService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
