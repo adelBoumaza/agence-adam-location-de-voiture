@@ -5,6 +5,7 @@ public class ReservationObjectDto {
 	private ReservationDto reservationDto = new ReservationDto();
 	private ClientDto clientDto = new ClientDto();
 	private VoitureDto voitureDto = new VoitureDto();
+	private String dateExpirationAssurance;
 	
 	public ReservationObjectDto() {
 		
@@ -34,9 +35,18 @@ public class ReservationObjectDto {
 		this.voitureDto = voitureDto;
 	}
 
+	
+	public String getDateExpirationAssurance() {
+		return dateExpirationAssurance;
+	}
+
+	public void setDateExpirationAssurance(String dateExpirationAssurance) {
+		this.dateExpirationAssurance = dateExpirationAssurance;
+	}
+
 	@Override
 	public String toString() {
-		return "ReservationObjectDto [reservationDto=" + reservationDto + ", clientDto=" + clientDto + ", voitureDto="
+		return "ReservationObjectDto [reservationDto=" +dateExpirationAssurance + " "+reservationDto + ", clientDto=" + clientDto + ", voitureDto="
 				+ voitureDto + "]";
 	}
 	

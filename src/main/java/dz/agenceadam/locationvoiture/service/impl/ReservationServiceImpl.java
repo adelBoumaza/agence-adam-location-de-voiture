@@ -241,6 +241,11 @@ public class ReservationServiceImpl implements IReservationService{
 		objectDto.setClientDto(clientDto);
 		objectDto.setVoitureDto(voitureDto);
 		objectDto.setReservationDto(reservationDto);
+		
+		List<Object[]> lastAssurance = voitureRepository.findLastAssuranceVoiture(voitureDto.getId());
+		lastAssurance.forEach(assurance ->{
+			objectDto.setDateExpirationAssurance(IConstant.IDateFormat.DD_MM_YYYY.format(assurance[0]));
+		});
 		return objectDto;
 	}
 
