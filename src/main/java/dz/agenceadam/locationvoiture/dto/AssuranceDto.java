@@ -12,6 +12,8 @@ public class AssuranceDto {
 	
 	private String typeAssurance;
 	
+	private boolean expiration;
+	
 	public AssuranceDto() {
 
 	}
@@ -36,10 +38,6 @@ public class AssuranceDto {
 		this.prixAchat = prixAchat;
 	}
 	
-	
-
-
-
 
 	public String getTypeAssurance() {
 		return typeAssurance;
@@ -48,6 +46,18 @@ public class AssuranceDto {
 
 	public void setTypeAssurance(String typeAssurance) {
 		this.typeAssurance = typeAssurance;
+	}
+	
+	
+
+
+	public boolean isExpiration() {
+		return expiration;
+	}
+
+
+	public void setExpiration(boolean expiration) {
+		this.expiration = expiration;
 	}
 
 

@@ -1,6 +1,9 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
+import static org.mockito.Matchers.anyBoolean;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -25,6 +28,7 @@ public class AssuranceServiceImpl implements IAssuranceService{
 
 	@Override
 	public List<AssuranceDto> findAllAssuranceByVoiture(Integer idVoiture) {
+		Date now = new Date();
 		List<Assurance> assurances = assuranceRepository.findListeAssuranceByVoiture(idVoiture);
 		List<AssuranceDto> assuranceDtos = new ArrayList<>();
 		assurances.forEach(a ->{
@@ -32,6 +36,7 @@ public class AssuranceServiceImpl implements IAssuranceService{
 					.with(AssuranceDto::setTypeAssurance, a.getTypeAssurance())
 					.with(AssuranceDto::setPrixAchat, a.getPrixAchat())
 					.with(AssuranceDto::setDateExpiration,IConstant.IDateFormat.DD_MM_YYYY.format(a.getDateExpiration()))
+					.with(AssuranceDto::setExpiration,a.getDateExpiration().before(now))
 					.build();
 			assuranceDtos.add(dto);
 		});
