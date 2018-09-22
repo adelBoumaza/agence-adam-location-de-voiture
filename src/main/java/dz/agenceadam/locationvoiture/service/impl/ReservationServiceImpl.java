@@ -220,18 +220,32 @@ public class ReservationServiceImpl implements IReservationService{
 				reservation.getReservationEnAttente(),  reservation.getHeureDepart(), reservation.getHeureRetour());
 		ClientDto clientDto = new ClientDto(reservation.getClient().getId(), reservation.getClient().getNom(), 
 				reservation.getClient().getPrenom(), 
-				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateDeNaissance()), 
+				null, 
 				reservation.getClient().getLieuDeNaissance(), 
 				reservation.getClient().getAdresse(),
 				reservation.getClient().getEmail(), reservation.getClient().getNumeTelOne(), 
 				reservation.getClient().getNumTelTwo(), reservation.getClient().getTypeClient(), 
 				reservation.getClient().getNumeroPasseport(), reservation.getClient().getNumeroDePermis(),
-				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPermis()), 
-				IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPassport()), reservation.getClient().getLieuObtentionPermis(), 
+				null, 
+				null, 
+				reservation.getClient().getLieuObtentionPermis(), 
 				reservation.getClient().getLieuObtentionPasseport(),
 				reservation.getClient().getObservation(), reservation.getClient().getNote(), 
 				reservation.getClient().getActived(), reservation.getClient().getEndette(),
 				reservation.getClient().getSommeDette(), reservation.getClient().getClientBloque());
+		
+		if(reservation.getClient().getDateDeNaissance() != null)
+		{
+			clientDto.setDateDeNaissance(IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateDeNaissance()));
+		}
+		if(reservation.getClient().getDateObtentionPermis() != null)
+		{
+			clientDto.setDateObtentionPermis(IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPermis()));
+		}
+		if(reservation.getClient().getDateObtentionPassport() != null)
+		{
+			IConstant.IDateFormat.DD_MM_YYYY.format(reservation.getClient().getDateObtentionPassport());
+		}
 		VoitureDto voitureDto = new VoitureDto(reservation.getVoiture().getId(), reservation.getVoiture().getMarque(),
 				reservation.getVoiture().getModele(), reservation.getVoiture().getTypeVehicule(), reservation.getVoiture().getImmatricule(),
 				reservation.getVoiture().getPrixAchat(), reservation.getVoiture().getCouleur(), 
