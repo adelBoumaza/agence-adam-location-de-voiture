@@ -151,6 +151,10 @@ public class ReservationServiceImpl implements IReservationService{
 				.build();
 		Voiture voiture = GenericBuilder.of(Voiture::new).with(Voiture::setId, dto.getIdVoiture()).build();
 		Client client = null;
+		if(!save)
+		{
+			annulerReservation(dto.getId());
+		}
 		List<Reservation> existingReservation = reservationRepository.verifyExistingReservation(IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeDepart()), IConstant.IDateFormat.DD_MM_YYYY.parse(dto.getDateDeRetour()), dto.getIdVoiture());
 		if(existingReservation.isEmpty())
 		{
