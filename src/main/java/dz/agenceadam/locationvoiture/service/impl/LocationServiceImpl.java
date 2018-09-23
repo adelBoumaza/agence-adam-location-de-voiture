@@ -1,0 +1,104 @@
+package dz.agenceadam.locationvoiture.service.impl;
+
+import java.util.Date;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import dz.agenceadam.locationvoiture.dto.LocationDto;
+import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.entities.Location;
+import dz.agenceadam.locationvoiture.entities.Reservation;
+import dz.agenceadam.locationvoiture.entities.Voiture;
+import dz.agenceadam.locationvoiture.repository.ClientRepository;
+import dz.agenceadam.locationvoiture.repository.LocationRepository;
+import dz.agenceadam.locationvoiture.repository.ReservationRepository;
+import dz.agenceadam.locationvoiture.repository.VoitureRepository;
+import dz.agenceadam.locationvoiture.service.ILocationService;
+import dz.agenceadam.locationvoiture.util.GenericBuilder;
+
+@Service
+@Transactional
+public class LocationServiceImpl implements ILocationService{
+
+	@Autowired
+	private LocationRepository locationRepository;
+	
+	@Autowired
+	private ReservationRepository reservationRepository;
+	
+	@Autowired
+	private ClientRepository clientRepository;
+	
+	@Autowired
+	private VoitureRepository voitureRepository;
+
+	@Override
+	public LocationDto saveOrUpdate(LocationDto dto, boolean save) {
+		
+		Client client           = generateClient(dto);
+		Voiture voiture         = generateVoiture(dto);
+		Reservation reservation = generateReservation(dto);
+		clientRepository.save(client);
+		voitureRepository.save(voiture);
+		reservationRepository.save(reservation);
+		
+		Location location = GenericBuilder.of(Location::new)
+				.with(Location::setActived, true)
+				.with(Location::setCaution, dto.getCaution())
+				.with(Location::setDateConfirmationLocation, new Date())
+				.with(Location::setMontant, dto.getMontant())
+				.with(Location::setNombreDeJours, dto.getNombreDeJours())
+				.with(Location::setPrixUnitaire, dto.getPrixUnitaire())
+				.with(Location::setRemise, dto.getRemise())
+				.with(Location::setResteApaye, dto.getResteApaye())
+				.with(Location::setStatut, dto.getStatut())
+				.with(Location::setTotalHT, dto.getTotalHT())
+				.with(Location::setTotalTTC, dto.getTotalTTC())
+				.with(Location::setVersement, dto.getVersement())
+				.with(Location::setClient,client)
+				.with(Location::setVoiture, voiture)
+				.with(Location::setReservation, reservation)
+				.build();
+		
+		locationRepository.save(location);
+			
+		return dto;
+	}
+
+	private Reservation generateReservation(LocationDto dto) {
+		Reservation reservation = GenericBuilder.of(Reservation::new)
+				.with(Reservation::setId, dto.getIdReservation())
+				.with(Reservation::setHeureDepart, dto.getHeureDepart())
+				.with(Reservation::setHeureRetour, dto.getHeureRetour())
+				.with(Reservation::setReservationEnAttente, Boolean.FALSE)
+				.build();
+		return reservation;
+	}
+
+	private Voiture generateVoiture(LocationDto dto) {
+		Voiture voiture = GenericBuilder.of(Voiture::new)
+				.with(Voiture::setId, dto.getIdVoiture())
+				.with(Voiture::setKilommetrage, dto.getKmActuel())
+				.with(Voiture::setImmatricule, dto.getImmatricule())
+				.with(Voiture::setCarburantActuel, dto.getCarburantActuel())
+				.build();
+		return voiture;
+	}
+
+	private Client generateClient(LocationDto dto) {
+		Client client   = GenericBuilder.of(Client::new)
+				.with(Client::setId, dto.getIdClient())
+				.with(Client::setNom, dto.getNomClient())
+				.with(Client::setPrenom, dto.getPrenomClient())
+				.with(Client::setAdresse, dto.getAdresse())
+				.with(Client::setNumeroPasseport, dto.getNumeroPasseport())
+				.with(Client::setNumeroDePermis, dto.getNumeroPermis())
+				.with(Client::setNumeTelOne, dto.getTel())
+				.build();
+		return client;
+	}
+	
+	
+}
