@@ -84,6 +84,7 @@ public class LocationServiceImpl implements ILocationService{
 		return voiture;
 	}
 
+	
 	private Client generateClient(LocationDto dto) {
 		Client client   = clientRepository.findOne(dto.getIdClient());
 		client.setNom(dto.getNomClient());

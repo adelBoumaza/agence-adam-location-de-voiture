@@ -56,6 +56,7 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	private PasswordEncoder passwordEncoder;
 	
 	@Test
+	@Ignore
 	public void addLocation()
 	{
 		LocationDto dto = new LocationDto();
