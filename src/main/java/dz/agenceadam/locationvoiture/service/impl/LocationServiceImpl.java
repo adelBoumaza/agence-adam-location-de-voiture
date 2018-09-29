@@ -68,35 +68,32 @@ public class LocationServiceImpl implements ILocationService{
 	}
 
 	private Reservation generateReservation(LocationDto dto) {
-		Reservation reservation = GenericBuilder.of(Reservation::new)
-				.with(Reservation::setId, dto.getIdReservation())
-				.with(Reservation::setHeureDepart, dto.getHeureDepart())
-				.with(Reservation::setHeureRetour, dto.getHeureRetour())
-				.with(Reservation::setReservationEnAttente, Boolean.FALSE)
-				.build();
+		Reservation reservation = reservationRepository.findOne(dto.getIdReservation());
+		reservation.setHeureDepart(dto.getHeureDepart());
+		reservation.setHeureRetour(dto.getHeureRetour());
+		reservation.setReservationEnAttente(Boolean.FALSE);
+		
 		return reservation;
 	}
 
 	private Voiture generateVoiture(LocationDto dto) {
-		Voiture voiture = GenericBuilder.of(Voiture::new)
-				.with(Voiture::setId, dto.getIdVoiture())
-				.with(Voiture::setKilommetrage, dto.getKmActuel())
-				.with(Voiture::setImmatricule, dto.getImmatricule())
-				.with(Voiture::setCarburantActuel, dto.getCarburantActuel())
-				.build();
+		Voiture voiture = voitureRepository.findOne(dto.getId());
+		voiture.setKilommetrage(dto.getKmActuel());
+		voiture.setImmatricule(dto.getImmatricule());
+		voiture.setCarburantActuel(dto.getCarburantActuel());
+		
 		return voiture;
 	}
 
 	private Client generateClient(LocationDto dto) {
-		Client client   = GenericBuilder.of(Client::new)
-				.with(Client::setId, dto.getIdClient())
-				.with(Client::setNom, dto.getNomClient())
-				.with(Client::setPrenom, dto.getPrenomClient())
-				.with(Client::setAdresse, dto.getAdresse())
-				.with(Client::setNumeroPasseport, dto.getNumeroPasseport())
-				.with(Client::setNumeroDePermis, dto.getNumeroPermis())
-				.with(Client::setNumeTelOne, dto.getTel())
-				.build();
+		Client client   = clientRepository.findOne(dto.getIdClient());
+		client.setNom(dto.getNomClient());
+		client.setPrenom(dto.getPrenomClient());
+		client.setNumeroDePermis(dto.getNumeroPermis());
+		client.setNumeroPasseport(dto.getNumeroPasseport());
+		client.setNumeTelOne(dto.getTel());
+		client.setAdresse(dto.getAdresse());
+				
 		return client;
 	}
 	
