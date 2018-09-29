@@ -56,10 +56,13 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	private PasswordEncoder passwordEncoder;
 	
 	@Test
-	@Ignore
 	public void addLocation()
 	{
-		locationService.saveOrUpdate(new LocationDto(), true);
+		LocationDto dto = new LocationDto();
+		dto.setIdClient(9);
+		dto.setIdReservation(186);
+		dto.setIdVoiture(29);
+		locationService.saveOrUpdate(dto, true);
 	}
 	
 	@Test

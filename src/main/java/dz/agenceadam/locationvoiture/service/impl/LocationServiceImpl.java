@@ -37,13 +37,12 @@ public class LocationServiceImpl implements ILocationService{
 	@Override
 	public LocationDto saveOrUpdate(LocationDto dto, boolean save) {
 		
-		Client client           = generateClient(dto);
-		Voiture voiture         = generateVoiture(dto);
+		Client client = generateClient(dto);
+		Voiture voiture = generateVoiture(dto);
 		Reservation reservation = generateReservation(dto);
 		clientRepository.save(client);
 		voitureRepository.save(voiture);
 		reservationRepository.save(reservation);
-		
 		Location location = GenericBuilder.of(Location::new)
 				.with(Location::setActived, true)
 				.with(Location::setCaution, dto.getCaution())
@@ -66,7 +65,7 @@ public class LocationServiceImpl implements ILocationService{
 			
 		return dto;
 	}
-
+	
 	private Reservation generateReservation(LocationDto dto) {
 		Reservation reservation = reservationRepository.findOne(dto.getIdReservation());
 		reservation.setHeureDepart(dto.getHeureDepart());
@@ -77,7 +76,7 @@ public class LocationServiceImpl implements ILocationService{
 	}
 
 	private Voiture generateVoiture(LocationDto dto) {
-		Voiture voiture = voitureRepository.findOne(dto.getId());
+		Voiture voiture = voitureRepository.findOne(dto.getIdVoiture());
 		voiture.setKilommetrage(dto.getKmActuel());
 		voiture.setImmatricule(dto.getImmatricule());
 		voiture.setCarburantActuel(dto.getCarburantActuel());
@@ -96,6 +95,7 @@ public class LocationServiceImpl implements ILocationService{
 				
 		return client;
 	}
+	
 	
 	
 }
