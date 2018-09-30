@@ -20,10 +20,12 @@ import dz.agenceadam.locationvoiture.dto.ReservationObjectDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.dto.VoitureDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.entities.Location;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
+import dz.agenceadam.locationvoiture.repository.LocationRepository;
 import dz.agenceadam.locationvoiture.repository.ReservationRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
 import dz.agenceadam.locationvoiture.service.IReservationService;
@@ -43,6 +45,9 @@ public class ReservationServiceImpl implements IReservationService{
 	
 	@Autowired
 	private ClientRepository clientRepository;
+	
+	@Autowired
+	private LocationRepository locationRepository;
 	
 	
 	@Override
@@ -210,6 +215,12 @@ public class ReservationServiceImpl implements IReservationService{
 		Reservation reservation = reservationRepository.findOne(idReservation);
 		reservation.setActived(Boolean.FALSE);
 		reservationRepository.save(reservation);
+		Location location = locationRepository.findOneLocationByReservation(idReservation);
+		if(location != null)
+		{
+			location.setActived(Boolean.FALSE);
+			locationRepository.save(location);
+		}
 	}
 
 
