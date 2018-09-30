@@ -131,7 +131,7 @@ public class ReservationServiceImpl implements IReservationService{
 		j.setNbrJours(reservation.getNombreDeJours());
 		j.setHeureDepart(reservation.getHeureDepart());
 		j.setHeureRetour(reservation.getHeureRetour());
-		j.setReservationEnAttente(reservation.getReservationEnAttente());
+		j.setReservationEnAttente(reservation.getReservationEnAttente() == null ? Boolean.TRUE : reservation.getReservationEnAttente());
 	}
 
 
