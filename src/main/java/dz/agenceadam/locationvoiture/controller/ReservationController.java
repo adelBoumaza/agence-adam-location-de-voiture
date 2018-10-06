@@ -3,6 +3,7 @@ package dz.agenceadam.locationvoiture.controller;
 import java.text.ParseException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +26,17 @@ public class ReservationController {
 	@Autowired
 	private IReservationService iReservationService;
 	
+	private final static Logger LOGGER = Logger.getLogger(ReservationController.class);
+	
 	@GetMapping(value="/reservation/allReservationByMonthAndYears/{month}/{year}/{idUser}")
 	public List<ReservationResponseDto> findAllReservationByMonthAndYears
 			(@PathVariable int month,@PathVariable int year,@PathVariable Integer idUser)
 	{
-		return iReservationService.allReservationByMonthAndYear(month, year, idUser);
+		List<ReservationResponseDto> data = iReservationService.allReservationByMonthAndYear(month, year, idUser);
+		data.forEach(action->{
+			LOGGER.info(action);
+		});
+		return data;
 	}
 	
 	@PostMapping(value="/reservation/saveOrUpdate/{save}")
