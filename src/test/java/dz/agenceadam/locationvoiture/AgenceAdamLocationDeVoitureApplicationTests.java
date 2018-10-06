@@ -3,6 +3,7 @@ package dz.agenceadam.locationvoiture;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Ignore;
@@ -13,17 +14,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import dz.agenceadam.locationvoiture.dto.DetteDto;
 import dz.agenceadam.locationvoiture.dto.LocationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationObjectDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.entities.Dette;
+import dz.agenceadam.locationvoiture.entities.Location;
 import dz.agenceadam.locationvoiture.entities.Role;
 import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
+import dz.agenceadam.locationvoiture.repository.DetteRepository;
+import dz.agenceadam.locationvoiture.repository.LocationRepository;
 import dz.agenceadam.locationvoiture.repository.RoleRepository;
 import dz.agenceadam.locationvoiture.repository.UserRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
+import dz.agenceadam.locationvoiture.service.IDetteService;
 import dz.agenceadam.locationvoiture.service.ILocationService;
 import dz.agenceadam.locationvoiture.service.IReservationService;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
@@ -46,23 +53,71 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	IVoitureService iVoitureService; 
 	
 	@Autowired
+	LocationRepository locationRepository;
+	
+	@Autowired
+	DetteRepository detteRepository;
+	
+	@Autowired
+	IDetteService detteService;
+	
+	
+	@Autowired
 	private UserRepository iUserRepository;
 	
 	@Autowired
 	private RoleRepository iRoleRepository;
+
 	
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	
+	@Test
+	public void findAllDettesByUser() throws Exception 
+	{
+		
+		/*try {
+			List<Object[]> data = 	detteRepository.findAllDettesByUser(2);
+			for (Object[] result : data) {
+			    System.out.println(result[0]+" "+result[1]+" "+result[2]);
+			}
+		} catch (Exception e) {
+			System.out.println(e.fillInStackTrace());
+			throw new Exception(); 
+		}*/
+	 
+		List<DetteDto> data = detteService.findAllDettesByUser(2);
+		data.forEach(action->{
+			System.out.println(action);
+		});
+		
+	}
+	
 	@Test
 	@Ignore
 	public void addLocation()
 	{
-		LocationDto dto = new LocationDto();
-		dto.setIdClient(9);
-		dto.setIdReservation(186);
+		
+		Location location = locationRepository.findOne(6);
+		
+		LocationDto dto = GenericBuilder.of(LocationDto::new)
+				.with(LocationDto::setCaution, location.getCaution())
+				.with(LocationDto::setMontant, location.getMontant())
+				.with(LocationDto::setNombreDeJours, location.getNombreDeJours())
+				.with(LocationDto::setPrixUnitaire, location.getPrixUnitaire())
+				.with(LocationDto::setRemise, location.getRemise())
+				.with(LocationDto::setResteApaye, location.getResteApaye())
+				.with(LocationDto::setStatut, location.getStatut())
+				.with(LocationDto::setTotalHT, location.getTotalHT())
+				.with(LocationDto::setTotalTTC, location.getTotalTTC())
+				.with(LocationDto::setVersement, location.getVersement())
+				.build();
+		dto.setIdClient(46);
+		dto.setIdReservation(195);
 		dto.setIdVoiture(29);
+		
 		locationService.saveOrUpdate(dto, true);
 	}
 	

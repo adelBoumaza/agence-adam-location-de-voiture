@@ -1,5 +1,6 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -8,15 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import dz.agenceadam.locationvoiture.dto.LocationDto;
 import dz.agenceadam.locationvoiture.entities.Client;
+import dz.agenceadam.locationvoiture.entities.Dette;
 import dz.agenceadam.locationvoiture.entities.Location;
 import dz.agenceadam.locationvoiture.entities.Reservation;
 import dz.agenceadam.locationvoiture.entities.Voiture;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
+import dz.agenceadam.locationvoiture.repository.DetteRepository;
 import dz.agenceadam.locationvoiture.repository.LocationRepository;
 import dz.agenceadam.locationvoiture.repository.ReservationRepository;
 import dz.agenceadam.locationvoiture.repository.VoitureRepository;
 import dz.agenceadam.locationvoiture.service.ILocationService;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
+import dz.agenceadam.locationvoiture.util.IConstant;
 
 @Service
 @Transactional
@@ -33,6 +37,9 @@ public class LocationServiceImpl implements ILocationService{
 	
 	@Autowired
 	private VoitureRepository voitureRepository;
+	
+	@Autowired
+	private DetteRepository detteRepository;
 
 	@Override
 	public LocationDto saveOrUpdate(LocationDto dto, boolean save) {
@@ -62,6 +69,22 @@ public class LocationServiceImpl implements ILocationService{
 				.build();
 		
 		locationRepository.save(location);
+		
+		if(!dto.getStatut().equals(IConstant.Statut.STATUT_PAYE))
+		{
+			Dette dette = GenericBuilder.of(Dette::new)
+					.with(Dette::setNom, dto.getNomClient()).with(Dette::setPrenom, dto.getPrenomClient())
+					.with(Dette::setActived, Boolean.TRUE)
+					.with(Dette::setResteApayer, dto.getResteApaye())
+					.with(Dette::setStatut, dto.getStatut())
+					.with(Dette::setTotalTTC, dto.getTotalTTC())
+					.with(Dette::setVersement, dto.getVersement())
+					.with(Dette::setLocation, location)
+					.build();
+			detteRepository.save(dette);
+		}
+		
+		
 			
 		return dto;
 	}
