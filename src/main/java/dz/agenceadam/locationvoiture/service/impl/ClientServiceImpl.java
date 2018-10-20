@@ -60,11 +60,11 @@ public class ClientServiceImpl implements IClientService{
 				.with(Client::setTypeClient,clientDto.getTypeClient())
 				.build();
 		
-		if(clientDto.getDateObtentionPassport() != null && ! clientDto.getDateObtentionPassport().isEmpty() )
+		if(clientDto.getDateObtentionPassport() != null)
 		{
 			client.setDateObtentionPassport(IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateObtentionPassport()));
 		}
-		if(clientDto.getDateObtentionPermis() != null && ! clientDto.getDateObtentionPermis().isEmpty())
+		if(clientDto.getDateObtentionPermis() != null)
 		{
 			client.setDateObtentionPermis(IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateObtentionPermis()));
 		}
