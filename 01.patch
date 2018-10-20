@@ -1,0 +1,18 @@
+diff --git a/src/main/java/dz/agenceadam/locationvoiture/service/impl/ClientServiceImpl.java b/src/main/java/dz/agenceadam/locationvoiture/service/impl/ClientServiceImpl.java
+index 2d0e5c5..6c50d02 100644
+--- a/src/main/java/dz/agenceadam/locationvoiture/service/impl/ClientServiceImpl.java
++++ b/src/main/java/dz/agenceadam/locationvoiture/service/impl/ClientServiceImpl.java
+@@ -60,11 +60,11 @@ public class ClientServiceImpl implements IClientService{
+ 				.with(Client::setTypeClient,clientDto.getTypeClient())
+ 				.build();
+ 		
+-		if(clientDto.getDateObtentionPassport() != null)
++		if(clientDto.getDateObtentionPassport() != null && ! clientDto.getDateObtentionPassport().isEmpty() )
+ 		{
+ 			client.setDateObtentionPassport(IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateObtentionPassport()));
+ 		}
+-		if(clientDto.getDateObtentionPermis() != null)
++		if(clientDto.getDateObtentionPermis() != null && ! clientDto.getDateObtentionPermis().isEmpty())
+ 		{
+ 			client.setDateObtentionPermis(IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateObtentionPermis()));
+ 		}
