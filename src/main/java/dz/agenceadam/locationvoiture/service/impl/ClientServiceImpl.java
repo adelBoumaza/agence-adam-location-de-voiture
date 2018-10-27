@@ -43,7 +43,7 @@ public class ClientServiceImpl implements IClientService{
 				.with(Client::setAdresse, clientDto.getAdresse())
 				.with(Client::setClientBloque, clientDto.getClientBloque())
 				.with(Client::setDateDeNaissance, IConstant.IDateFormat.DD_MM_YYYY.parse(clientDto.getDateDeNaissance()))
-				.with(Client::setLieuDeNaissance, clientDto.getDateDeNaissance())
+				.with(Client::setLieuDeNaissance, clientDto.getLieuDeNaissance())
 				.with(Client::setEmail, clientDto.getEmail())
 				.with(Client::setEndette,clientDto.getEndette())
 				.with(Client::setLieuObtentionPasseport,clientDto.getLieuObtentionPasseport())
