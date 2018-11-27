@@ -45,6 +45,5 @@ public class AgenceAdamLocationDeVoitureApplication {
 		return new HttpSessionEventPublisher();
 	}
 
-	// sara test git
 	
 }
