@@ -13,7 +13,7 @@ public class ProfileDto {
 	private String adresse;
     private String nomAgence;
     private String email;
-    private MultipartFile logo;
+    private MultipartFile[] logo;
     private String numeTelOne;
     private String numTelTwo;
     private String nomFichier;
@@ -79,11 +79,11 @@ public class ProfileDto {
 		this.email = email;
 	}
 
-	public MultipartFile getLogo() {
+	public MultipartFile[] getLogo() {
 		return logo;
 	}
 
-	public void setLogo(MultipartFile logo) {
+	public void setLogo(MultipartFile[] logo) {
 		this.logo = logo;
 	}
 
