@@ -3,6 +3,7 @@ package dz.agenceadam.locationvoiture;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,10 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dz.agenceadam.locationvoiture.dto.ClientDto;
 import dz.agenceadam.locationvoiture.entities.Client;
-import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.repository.ClientRepository;
 import dz.agenceadam.locationvoiture.service.IClientService;
-import dz.agenceadam.locationvoiture.util.GenericBuilder;
+import dz.agenceadam.locationvoiture.util.IConstant;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,16 +31,17 @@ public class ClientServiceTestu {
 	
 	
 	@Test
-	public void saveClient()
+	public void saveClient() throws ParseException
 	{
 	   ClientDto dto = new ClientDto();
-	   dto.setNom("BOUMAZA");
-	   dto.setPrenom("adel");
-	   dto.setDateDeNaissance("28/06/2018");
+	   dto.setId(9);
+	   dto.setNom("Boumazaa");
+	   dto.setPrenom("");
+	   dto.setDateDeNaissance("11/10/2016");
        
     		   
       try {
-		iClientService.saveClientWidthUser(dto, 1);
+		iClientService.saveOrUpdate(dto, 2,false);
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -54,7 +56,9 @@ public class ClientServiceTestu {
 	public void findAll()
 	{
 		
-			iClientService.findAll();
+			List<Client> c = iClientService.findAll();
+			System.out.println(c);
+			
 		
 	}
 	
@@ -66,7 +70,7 @@ public class ClientServiceTestu {
 		    Date date;
 			try {
 				date = sdf.parse("2018-06-28");
-				Client c = clientRepository.findByNomAndPrenomAndDateDeNaissance("BOUMAZA", "adel", date);
+				Client c = clientRepository.findByNomAndPrenomAndDateDeNaissance("BOUMAZA", "adel", date,1);
 				System.out.println(c);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block

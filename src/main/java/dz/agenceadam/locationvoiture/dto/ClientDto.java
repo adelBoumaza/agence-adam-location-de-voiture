@@ -8,6 +8,7 @@ public class ClientDto {
 	private String nom;
 	private String prenom;
 	private String dateDeNaissance;
+	private String lieuDeNaissance;
 	private String adresse;
 	private String email;
 	private String numeTelOne;
@@ -27,8 +28,53 @@ public class ClientDto {
 	private Boolean clientBloque;
 	private Integer idUser;
 	
+	
+	
+	
+	public ClientDto(Integer id, String nom, String prenom, String dateDeNaissance, String lieuDeNaissance,
+			String adresse, String email, String numeTelOne, String numTelTwo, Boolean typeClient,
+			String numeroPasseport, String numeroDePermis, String dateObtentionPermis, String dateObtentionPassport,
+			String lieuObtentionPermis, String lieuObtentionPasseport, String observation, Integer note,
+			Boolean actived, Boolean endette, Double sommeDette, Boolean clientBloque) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateDeNaissance = dateDeNaissance;
+		this.lieuDeNaissance = lieuDeNaissance;
+		this.adresse = adresse;
+		this.email = email;
+		this.numeTelOne = numeTelOne;
+		this.numTelTwo = numTelTwo;
+		this.typeClient = typeClient;
+		this.numeroPasseport = numeroPasseport;
+		this.numeroDePermis = numeroDePermis;
+		this.dateObtentionPermis = dateObtentionPermis;
+		this.dateObtentionPassport = dateObtentionPassport;
+		this.lieuObtentionPermis = lieuObtentionPermis;
+		this.lieuObtentionPasseport = lieuObtentionPasseport;
+		this.observation = observation;
+		this.note = note;
+		this.actived = actived;
+		this.endette = endette;
+		this.sommeDette = sommeDette;
+		this.clientBloque = clientBloque;
+	}
+
+
 	public ClientDto() {
 	}
+
+	
+	public String getLieuDeNaissance() {
+		return lieuDeNaissance;
+	}
+
+
+	public void setLieuDeNaissance(String lieuDeNaissance) {
+		this.lieuDeNaissance = lieuDeNaissance;
+	}
+
 
 	public Integer getId() {
 		return id;
