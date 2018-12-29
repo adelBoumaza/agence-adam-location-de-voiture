@@ -1,13 +1,18 @@
 package dz.agenceadam.locationvoiture.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,10 +35,13 @@ public class ProfileRest {
 	}
 	
 	@PostMapping("/profile/saveLogo")
-	public byte[] saveLogo(@RequestBody MultipartFile multipartFile) throws IOException {
-		logger.info("Logo :"+multipartFile);
-		logger.info("Logo :"+multipartFile.getBytes());
-		return multipartFile.getBytes();
+	public ResponseEntity<Object> saveLogo(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+		File convFile = new File(multipartFile.getOriginalFilename());
+	    convFile.createNewFile(); 
+	    FileOutputStream fos = new FileOutputStream(convFile); 
+	    fos.write(multipartFile.getBytes());
+	    fos.close(); 
+		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
 	}
 
 }
