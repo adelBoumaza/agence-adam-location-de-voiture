@@ -38,7 +38,7 @@ public class ProfileServiceImpl implements IProfileService {
 				.with(Profile::setNumTelTwo, profileDto.getNumTelTwo())
 				.with(Profile::setActived, Boolean.TRUE)
 				.with(Profile::setUser, user)
-				.with(Profile::setLogo, profileDto.getLogo().getBytes())
+				.with(Profile::setLogo, profileDto.getLogo()[0].getBytes())
 				.with(Profile::setNomFichier, profileDto.getNomFichier())
 				.build();
 		// File f = convert(profileDto.getLogo());
