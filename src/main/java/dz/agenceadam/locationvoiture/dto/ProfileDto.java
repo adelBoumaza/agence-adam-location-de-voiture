@@ -2,6 +2,8 @@ package dz.agenceadam.locationvoiture.dto;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProfileDto {
 	
 	private Integer id;
@@ -11,7 +13,7 @@ public class ProfileDto {
 	private String adresse;
     private String nomAgence;
     private String email;
-    private byte[] logo;
+    private MultipartFile logo;
     private String numeTelOne;
     private String numTelTwo;
     private String nomFichier;
@@ -77,11 +79,11 @@ public class ProfileDto {
 		this.email = email;
 	}
 
-	public byte[] getLogo() {
+	public MultipartFile getLogo() {
 		return logo;
 	}
 
-	public void setLogo(byte[] logo) {
+	public void setLogo(MultipartFile logo) {
 		this.logo = logo;
 	}
 
@@ -122,7 +124,7 @@ public class ProfileDto {
 	@Override
 	public String toString() {
 		return "ProfileDto [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", actived=" + actived + ", adresse="
-				+ adresse + ", nomAgence=" + nomAgence + ", email=" + email + ", logo=" + Arrays.toString(logo)
+				+ adresse + ", nomAgence=" + nomAgence + ", email=" + email + ", logo=" 
 				+ ", numeTelOne=" + numeTelOne + ", numTelTwo=" + numTelTwo + ", idUser=" + idUser + "]";
 	}
     
