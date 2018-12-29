@@ -44,5 +44,6 @@ public class AgenceAdamLocationDeVoitureApplication {
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 		return new HttpSessionEventPublisher();
 	}
+
 	
 }
