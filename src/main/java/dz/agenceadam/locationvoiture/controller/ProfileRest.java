@@ -71,13 +71,13 @@ public class ProfileRest {
 		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/profile/saveLogo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Object> saveLogo(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-		File convFile = new File(multipartFile.getOriginalFilename());
-	    convFile.createNewFile(); 
-	    FileOutputStream fos = new FileOutputStream(convFile); 
-	    fos.write(multipartFile.getBytes());
-	    fos.close(); 
+	@PostMapping(path = "/profile/saveOrUpdate",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<Object> saveLogo(@RequestBody ProfileDto profileDto,@RequestParam("file") MultipartFile multipartFile) throws IOException {
+		
+		File convFile = new File(multipartFile != null ? multipartFile.getOriginalFilename():null);
+		profileDto.setNomFichier(convFile != null ?convFile.getName():"");
+		profileDto.setLogo(multipartFile != null ? multipartFile.getBytes():null);
+		profileService.saveOrUpdate(profileDto, true);
 		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
 	}
 
