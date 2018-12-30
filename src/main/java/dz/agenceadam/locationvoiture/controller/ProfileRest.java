@@ -3,6 +3,7 @@ package dz.agenceadam.locationvoiture.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,8 @@ public class ProfileRest {
 			                                   @PathVariable String prenom,
 			                                   @PathVariable String nomAgence,
 			                                   @PathVariable String numeTelOne,
-			                                   @PathVariable String numTelTwo,
-			                                   @PathVariable String email,
+			                                   @PathVariable Optional<String> numTelTwo,
+			                                   @PathVariable Optional<String> email,
 			                                   @PathVariable String adresse,
 			                                   @PathVariable Integer idUser,
 			                                   @PathVariable boolean save
