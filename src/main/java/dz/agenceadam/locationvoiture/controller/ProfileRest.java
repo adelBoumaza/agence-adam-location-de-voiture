@@ -30,22 +30,22 @@ public class ProfileRest {
 	@Autowired
 	private IProfileService profileService;
 
-	@PostMapping("/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numeTelTwo}/{mail}/{adresse}/{idUser}/{save}")
+	@PostMapping("/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}")
 	public ResponseEntity<Object> saveorUpdate(
 											   @RequestParam("file") MultipartFile multipartFile,
 			                                   @PathVariable String nom,
 			                                   @PathVariable String prenom,
 			                                   @PathVariable String nomAgence,
 			                                   @PathVariable String numeTelOne,
-			                                   @PathVariable String numeTelTwo,
-			                                   @PathVariable String mail,
+			                                   @PathVariable String numTelTwo,
+			                                   @PathVariable String email,
 			                                   @PathVariable String adresse,
 			                                   @PathVariable Integer idUser,
 			                                   @PathVariable boolean save
 			                                   ) throws IOException 
 	{
 		File convFile = new File(multipartFile.getOriginalFilename());
-	    convFile.createNewFile(); 
+	    // convFile.createNewFile(); 
 	    //FileOutputStream fos = new FileOutputStream(convFile); 
 	    //fos.write(multipartFile.getBytes());
 	    //fos.close(); 
@@ -54,13 +54,13 @@ public class ProfileRest {
 				.with(ProfileDto::setNomAgence, nomAgence)
 				.with(ProfileDto::setNom, nom)
 				.with(ProfileDto::setPrenom, prenom)
-				.with(ProfileDto::setEmail, mail)
+				.with(ProfileDto::setEmail, email)
 				.with(ProfileDto::setNumeTelOne, numeTelOne)
-				.with(ProfileDto::setNumTelTwo, numeTelTwo)
+				.with(ProfileDto::setNumTelTwo, numTelTwo)
 				.with(ProfileDto::setActived, Boolean.TRUE)
 				.with(ProfileDto::setIdUser, idUser)
-				.with(ProfileDto::setLogo, multipartFile.getBytes())
-				.with(ProfileDto::setNomFichier, convFile.getName())
+				.with(ProfileDto::setLogo, multipartFile != null ? multipartFile.getBytes():null)
+				.with(ProfileDto::setNomFichier, convFile != null ?convFile.getName():"")
 				.build();
 		profileService.saveOrUpdate(profileDto, save);
 		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
