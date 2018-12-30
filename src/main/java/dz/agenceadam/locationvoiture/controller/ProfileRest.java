@@ -30,7 +30,11 @@ public class ProfileRest {
 	@Autowired
 	private IProfileService profileService;
 
-	@PostMapping("/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}")
+	@PostMapping(value = {"/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{adresse}/{idUser}/{save}",
+			  			  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{adresse}/{idUser}/{save}",
+						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{email}/{adresse}/{idUser}/{save}",
+						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}"
+						 })
 	public ResponseEntity<Object> saveorUpdate(
 											   @RequestParam("file") MultipartFile multipartFile,
 			                                   @PathVariable String nom,
