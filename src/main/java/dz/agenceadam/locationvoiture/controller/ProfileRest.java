@@ -37,7 +37,7 @@ public class ProfileRest {
 						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}"
 						 })
 	public ResponseEntity<Object> saveorUpdate(
-											   @RequestParam("file") MultipartFile multipartFile,
+											   @RequestParam(value = "file", required=false) MultipartFile multipartFile,
 			                                   @PathVariable String nom,
 			                                   @PathVariable String prenom,
 			                                   @PathVariable String nomAgence,
@@ -49,7 +49,7 @@ public class ProfileRest {
 			                                   @PathVariable boolean save
 			                                   ) throws IOException 
 	{
-		File convFile = new File(multipartFile.getOriginalFilename());
+		File convFile = new File(multipartFile != null ? multipartFile.getOriginalFilename():null);
 	    // convFile.createNewFile(); 
 	    //FileOutputStream fos = new FileOutputStream(convFile); 
 	    //fos.write(multipartFile.getBytes());
