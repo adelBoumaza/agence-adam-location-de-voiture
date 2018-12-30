@@ -37,7 +37,7 @@ public class ProfileRest {
 						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}"
 						 })
 	public ResponseEntity<Object> saveorUpdate(
-											   @RequestParam(value = "file", required=false) MultipartFile multipartFile,
+											   @RequestParam(value = "file", required=false,defaultValue = "") MultipartFile multipartFile,
 			                                   @PathVariable String nom,
 			                                   @PathVariable String prenom,
 			                                   @PathVariable String nomAgence,
