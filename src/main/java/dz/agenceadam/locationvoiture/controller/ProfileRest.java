@@ -29,9 +29,18 @@ public class ProfileRest {
 	private IProfileService profileService;
 
 	@PostMapping("/profile/saveOrUpdate/{save}")
-	public ProfileDto saveorUpdate(@RequestBody ProfileDto profileDto,@PathVariable boolean save) throws IOException {
-		
-		return profileService.saveOrUpdate(profileDto, save);
+	public ResponseEntity<Object> saveorUpdate(@RequestBody ProfileDto profileDto,
+											   @RequestParam("file") MultipartFile multipartFile,
+			                                   @PathVariable boolean save) throws IOException 
+	{
+		File convFile = new File(multipartFile.getOriginalFilename());
+	    convFile.createNewFile(); 
+	    //FileOutputStream fos = new FileOutputStream(convFile); 
+	    //fos.write(multipartFile.getBytes());
+	    //fos.close(); 
+	    profileDto.setLogo(multipartFile.getBytes());
+		profileService.saveOrUpdate(profileDto, save);
+		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
 	}
 	
 	@PostMapping(path = "/profile/saveLogo",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
