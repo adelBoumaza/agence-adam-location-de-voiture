@@ -13,10 +13,8 @@ public class ProfileDto {
 	private String adresse;
     private String nomAgence;
     private String email;
-    private byte[] logo;
     private String numeTelOne;
     private String numTelTwo;
-    private String nomFichier;
     private Integer idUser;
     
     public ProfileDto() {
@@ -79,13 +77,7 @@ public class ProfileDto {
 		this.email = email;
 	}
 
-	public byte[] getLogo() {
-		return logo;
-	}
 
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
-	}
 
 	public String getNumeTelOne() {
 		return numeTelOne;
@@ -111,15 +103,7 @@ public class ProfileDto {
 		this.idUser = idUser;
 	}
 	
-	
 
-	public String getNomFichier() {
-		return nomFichier;
-	}
-
-	public void setNomFichier(String nomFichier) {
-		this.nomFichier = nomFichier;
-	}
 
 	@Override
 	public String toString() {

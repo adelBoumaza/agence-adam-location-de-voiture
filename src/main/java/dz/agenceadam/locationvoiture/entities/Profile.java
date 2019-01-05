@@ -2,6 +2,7 @@ package dz.agenceadam.locationvoiture.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,11 +32,10 @@ public class Profile  implements Serializable{
 	private String adresse;
     private String nomAgence;
     private String email;
-    @Lob
-    private byte[] logo;
-    private String nomFichier;
     private String numeTelOne;
     private String numTelTwo;
+
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="FK_USER")
     private User user;
@@ -98,13 +98,7 @@ public class Profile  implements Serializable{
 		this.email = email;
 	}
 
-	public byte[] getLogo() {
-		return logo;
-	}
 
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
-	}
 
 	public String getNumeTelOne() {
 		return numeTelOne;
@@ -132,13 +126,6 @@ public class Profile  implements Serializable{
 		this.user = user;
 	}
 
-	public String getNomFichier() {
-		return nomFichier;
-	}
-
-	public void setNomFichier(String nomFichier) {
-		this.nomFichier = nomFichier;
-	}
     
 	
     

@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import dz.agenceadam.locationvoiture.dto.ProfileDto;
+import dz.agenceadam.locationvoiture.dto.ProfilePictureDto;
 import dz.agenceadam.locationvoiture.entities.Profile;
+import dz.agenceadam.locationvoiture.entities.ProfilePicture;
 import dz.agenceadam.locationvoiture.service.IProfileService;
+import dz.agenceadam.locationvoiture.service.impl.ProfilePictureImpl;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
 
 @RestController
@@ -30,56 +33,37 @@ public class ProfileRest {
 	
 	@Autowired
 	private IProfileService profileService;
+	
+	@Autowired
+	private ProfilePictureImpl prifilePicture;
 
-	@PostMapping(value = {"/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{adresse}/{idUser}/{save}",
-			  			  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{adresse}/{idUser}/{save}",
-						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{email}/{adresse}/{idUser}/{save}",
-						  "/profile/saveOrUpdate/{nom}/{prenom}/{nomAgence}/{numeTelOne}/{numTelTwo}/{email}/{adresse}/{idUser}/{save}"
-						 })
-	public ResponseEntity<Object> saveorUpdate(
-											   @RequestParam(value = "file", required=false,defaultValue = "") MultipartFile multipartFile,
-			                                   @PathVariable String nom,
-			                                   @PathVariable String prenom,
-			                                   @PathVariable String nomAgence,
-			                                   @PathVariable String numeTelOne,
-			                                   @PathVariable Optional<String> numTelTwo,
-			                                   @PathVariable Optional<String> email,
-			                                   @PathVariable String adresse,
-			                                   @PathVariable Integer idUser,
-			                                   @PathVariable boolean save
-			                                   ) throws IOException 
+	@PostMapping(value = {"/profile/saveOrUpdate/{save}"})
+	public ResponseEntity<Object> saveorUpdate(@RequestBody ProfileDto profileDto,@PathVariable boolean save) throws IOException 
 	{
-		File convFile = new File(multipartFile != null ? multipartFile.getOriginalFilename():null);
-	    // convFile.createNewFile(); 
-	    //FileOutputStream fos = new FileOutputStream(convFile); 
-	    //fos.write(multipartFile.getBytes());
-	    //fos.close(); 
-	    ProfileDto profileDto = GenericBuilder.of(ProfileDto::new)
-				.with(ProfileDto::setAdresse, adresse)
-				.with(ProfileDto::setNomAgence, nomAgence)
-				.with(ProfileDto::setNom, nom)
-				.with(ProfileDto::setPrenom, prenom)
-				.with(ProfileDto::setEmail,email.isPresent() ? email.get():"")
-				.with(ProfileDto::setNumeTelOne, numeTelOne)
-				.with(ProfileDto::setNumTelTwo, numTelTwo.isPresent() ? numTelTwo.get():"")
-				.with(ProfileDto::setActived, Boolean.TRUE)
-				.with(ProfileDto::setIdUser, idUser)
-				.with(ProfileDto::setLogo, multipartFile != null ? multipartFile.getBytes():null)
-				.with(ProfileDto::setNomFichier, convFile != null ?convFile.getName():"")
-				.build();
+
 		profileService.saveOrUpdate(profileDto, save);
-		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
+		
+		return new ResponseEntity<>("le profile bien enregistrer",HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/profile/saveOrUpdate",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Object> saveLogo(@RequestBody ProfileDto profileDto,@RequestParam ("file") MultipartFile file) throws IOException {
+	@PostMapping(value = {"/profile/saveOrUpdateProfilePicture/{idProfile}/{nomFichier}/{save}"})
+	public ResponseEntity<Object> saveorUpdate(@RequestParam(value = "file", required=false,defaultValue = "") MultipartFile multipartFile,
+            @PathVariable Integer idProfile,
+            @PathVariable boolean save,
+            @PathVariable String nomFichier) throws IOException {
 		
-		File convFile = new File(file != null ? file.getOriginalFilename():null);
-		profileDto.setNomFichier(convFile != null ?convFile.getName():"");
-		profileDto.setLogo(file != null ? file.getBytes():null);
-		profileService.saveOrUpdate(profileDto, true);
-		return new ResponseEntity<>("le logo bien chargee",HttpStatus.OK);
+		File convFile = new File(multipartFile != null ? multipartFile.getOriginalFilename():null);
+		
+		ProfilePictureDto profilePictureDto = GenericBuilder.of(ProfilePictureDto :: new)
+				.with(ProfilePictureDto::setLogo, multipartFile != null ? multipartFile.getBytes():null)
+				.with(ProfilePictureDto::setNomFichier, convFile != null ?convFile.getName():"")
+				.with(ProfilePictureDto::setIdProfile, idProfile).build();
+		
+		prifilePicture.savePictureProfile(profilePictureDto, save);
+		
+		return new ResponseEntity<>("le logo bien été enregistrer",HttpStatus.OK);
 	}
+	
 
 }
 

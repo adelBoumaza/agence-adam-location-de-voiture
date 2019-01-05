@@ -6,5 +6,8 @@ import dz.agenceadam.locationvoiture.dto.ProfileDto;
 import dz.agenceadam.locationvoiture.entities.Profile;
 
 public interface IProfileService {
+	
 	ProfileDto saveOrUpdate(ProfileDto profileDto,boolean save) throws IOException;
+	
+	ProfileDto findOneProfileByUser(Integer idUser);
 }

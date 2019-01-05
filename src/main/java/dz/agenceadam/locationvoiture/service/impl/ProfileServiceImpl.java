@@ -27,7 +27,7 @@ public class ProfileServiceImpl implements IProfileService {
 	@Override
 	public ProfileDto saveOrUpdate(ProfileDto profileDto,boolean save) throws IOException {
 		User user = new User();
-		user.setId(profileDto.getIdUser());
+		user.setId(profileDto.getIdUser());		
 		Profile profile = GenericBuilder.of(Profile::new)
 				.with(Profile::setAdresse, profileDto.getAdresse())
 				.with(Profile::setNomAgence, profileDto.getNomAgence())
@@ -38,11 +38,13 @@ public class ProfileServiceImpl implements IProfileService {
 				.with(Profile::setNumTelTwo, profileDto.getNumTelTwo())
 				.with(Profile::setActived, Boolean.TRUE)
 				.with(Profile::setUser, user)
-				.with(Profile::setLogo, profileDto.getLogo())
-				.with(Profile::setNomFichier, profileDto.getNomFichier())
 				.build();
-		// File f = convert(profileDto.getLogo());
 		
+		Profile existeProfile = iProfileRepository.FindOneProfileByUser(profileDto.getIdUser());
+
+		if(!save) {
+			profile.setId(existeProfile.getId());
+		}
 		iProfileRepository.save(profile);
 		return profileDto;
 	}
@@ -55,6 +57,26 @@ public class ProfileServiceImpl implements IProfileService {
 	    fos.write(file.getBytes());
 	    fos.close(); 
 	    return convFile;
+	}
+
+	@Override
+	public ProfileDto findOneProfileByUser(Integer idUser) {
+		Profile profile = iProfileRepository.FindOneProfileByUser(idUser);
+		ProfileDto dto = null;
+		if(profile != null)
+		dto = GenericBuilder.of(ProfileDto :: new)
+				.with(ProfileDto::setActived, profile.getActived())
+				.with(ProfileDto::setAdresse, profile.getAdresse())
+				.with(ProfileDto::setEmail, profile.getEmail())
+				.with(ProfileDto::setId, profile.getId())
+				.with(ProfileDto::setIdUser, profile.getUser().getId())
+				.with(ProfileDto::setNom, profile.getNom())
+				.with(ProfileDto::setNomAgence, profile.getNomAgence())
+				.with(ProfileDto::setNumeTelOne, profile.getNumeTelOne())
+				.with(ProfileDto::setNumTelTwo, profile.getNumTelTwo())
+				.with(ProfileDto::setPrenom, profile.getPrenom())
+				.build();
+		return dto;
 	}
 
 }
