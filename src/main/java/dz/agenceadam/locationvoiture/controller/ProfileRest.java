@@ -37,7 +37,7 @@ public class ProfileRest {
 	private IProfileService profileService;
 	
 	@Autowired
-	private ProfilePictureImpl prifilePicture;
+	private ProfilePictureImpl profilePicture;
 
 	@PostMapping(value = {"/profile/saveOrUpdate/{save}"})
 	public ProfileDto saveorUpdate(@RequestBody ProfileDto profileDto,@PathVariable boolean save) throws IOException 
@@ -60,15 +60,15 @@ public class ProfileRest {
 				.with(ProfilePictureDto::setNomFichier, convFile != null ?convFile.getName():"")
 				.with(ProfilePictureDto::setIdProfile, idProfile).build();
 		
-		prifilePicture.savePictureProfile(profilePictureDto, save);
+		profilePicture.savePictureProfile(profilePictureDto, save);
 		
 		return new ResponseEntity<>("le logo bien été enregistrer",HttpStatus.OK);
 	}
 	
-	@GetMapping(value = {"/profile/getProfileByUser/{idUser}"})
+	@GetMapping("/profile/getProfileByUser/{idUser}")
 	public ProfileGlobalDto getProfileByUser(@PathVariable Integer idUser) {
 		
-		return prifilePicture.findOneProfilePictureByUser(idUser);
+		return profilePicture.findOneProfilePictureByUser(idUser);
 	}
 	
 
