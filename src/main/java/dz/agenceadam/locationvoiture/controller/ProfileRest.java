@@ -46,7 +46,7 @@ public class ProfileRest {
 		return responseDto;
 	}
 	
-	@PostMapping(value = {"/profile/saveOrUpdateProfilePicture/{idProfile}/{nomFichier}/{save}"})
+	@PostMapping(value = {"/profile/saveOrUpdateProfilePicture/{idProfile}/{save}"})
 	public ResponseEntity<Object> saveorUpdate(@RequestParam(value = "file", required=false,defaultValue = "") MultipartFile multipartFile,
             @PathVariable Integer idProfile,
             @PathVariable boolean save,
