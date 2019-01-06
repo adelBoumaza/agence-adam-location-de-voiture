@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import dz.agenceadam.locationvoiture.dto.ProfileDto;
+import dz.agenceadam.locationvoiture.dto.ProfileGlobalDto;
 import dz.agenceadam.locationvoiture.dto.ProfilePictureDto;
 import dz.agenceadam.locationvoiture.entities.Profile;
 import dz.agenceadam.locationvoiture.entities.ProfilePicture;
@@ -61,6 +63,12 @@ public class ProfileRest {
 		prifilePicture.savePictureProfile(profilePictureDto, save);
 		
 		return new ResponseEntity<>("le logo bien été enregistrer",HttpStatus.OK);
+	}
+	
+	@GetMapping(value = {"/profile/getProfileByUser/{idUser}"})
+	public ProfileGlobalDto getProfileByUser(@PathVariable Integer idUser) {
+		
+		return prifilePicture.findOneProfilePictureByUser(idUser);
 	}
 	
 

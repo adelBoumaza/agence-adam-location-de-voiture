@@ -17,12 +17,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dz.agenceadam.locationvoiture.dto.DetteDto;
 import dz.agenceadam.locationvoiture.dto.LocationDto;
 import dz.agenceadam.locationvoiture.dto.ProfileDto;
+import dz.agenceadam.locationvoiture.dto.ProfileGlobalDto;
 import dz.agenceadam.locationvoiture.dto.ReservationDto;
 import dz.agenceadam.locationvoiture.dto.ReservationObjectDto;
 import dz.agenceadam.locationvoiture.dto.ReservationResponseDto;
 import dz.agenceadam.locationvoiture.entities.Client;
 import dz.agenceadam.locationvoiture.entities.Dette;
 import dz.agenceadam.locationvoiture.entities.Location;
+import dz.agenceadam.locationvoiture.entities.ProfilePicture;
 import dz.agenceadam.locationvoiture.entities.Role;
 import dz.agenceadam.locationvoiture.entities.User;
 import dz.agenceadam.locationvoiture.exception.DataFoundedException;
@@ -36,6 +38,7 @@ import dz.agenceadam.locationvoiture.service.ILocationService;
 import dz.agenceadam.locationvoiture.service.IProfileService;
 import dz.agenceadam.locationvoiture.service.IReservationService;
 import dz.agenceadam.locationvoiture.service.IVoitureService;
+import dz.agenceadam.locationvoiture.service.impl.ProfilePictureImpl;
 import dz.agenceadam.locationvoiture.util.GenericBuilder;
 
 @RunWith(SpringRunner.class)
@@ -47,6 +50,9 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	
 	@Autowired
 	IProfileService iProfileService; 
+	
+	@Autowired
+	ProfilePictureImpl iProfilePictureService;
 	
 	@Autowired
 	ILocationService locationService;
@@ -203,9 +209,14 @@ public class AgenceAdamLocationDeVoitureApplicationTests {
 	}
 
 	@Test
+	@Ignore
 	public void findOneUser() {
 		ProfileDto dto = iProfileService.findOneProfileByUser(2);
 	}
-	
+	@Test
+	public void findOneUserProfilePicture() {
+		ProfileGlobalDto dto = iProfilePictureService.findOneProfilePictureByUser(2);
+		System.out.println(dto);
+	}
 
 }

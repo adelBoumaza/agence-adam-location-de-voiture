@@ -40,7 +40,7 @@ public class ProfileServiceImpl implements IProfileService {
 				.with(Profile::setUser, user)
 				.build();
 		
-		Profile existeProfile = iProfileRepository.FindOneProfileByUser(profileDto.getIdUser());
+		Profile existeProfile = iProfileRepository.findOneProfileByUser(profileDto.getIdUser());
 
 		if(!save) {
 			profile.setId(existeProfile.getId());
@@ -62,7 +62,7 @@ public class ProfileServiceImpl implements IProfileService {
 
 	@Override
 	public ProfileDto findOneProfileByUser(Integer idUser) {
-		Profile profile = iProfileRepository.FindOneProfileByUser(idUser);
+		Profile profile = iProfileRepository.findOneProfileByUser(idUser);
 		ProfileDto dto = null;
 		if(profile != null)
 		dto = GenericBuilder.of(ProfileDto :: new)

@@ -1,6 +1,7 @@
 package dz.agenceadam.locationvoiture.entities;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class ProfilePicture implements Serializable {
 	@Lob
 	private byte [] logo;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_profile")
 	private Profile profile;
 	
@@ -65,6 +66,12 @@ public class ProfilePicture implements Serializable {
 
 	public void setNomFichier(String nomFichier) {
 		this.nomFichier = nomFichier;
+	}
+
+	@Override
+	public String toString() {
+		return "ProfilePicture [id=" + id + ", profile=" + profile + ", nomFichier="
+				+ nomFichier + "]";
 	}
 	
 	

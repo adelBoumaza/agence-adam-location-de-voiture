@@ -8,5 +8,5 @@ import dz.agenceadam.locationvoiture.entities.Profile;
 public interface ProfileRepository extends JpaRepository<Profile, Integer>{
 
 	@Query(value="FROM Profile p join fetch p.user u where u.id =? ")
-	Profile FindOneProfileByUser(Integer idUser);
+	Profile findOneProfileByUser(Integer idUser);
 }
