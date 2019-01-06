@@ -37,7 +37,7 @@ public class ProfileRest {
 	@Autowired
 	private ProfilePictureImpl prifilePicture;
 
-	@PostMapping(value = {"/profile/saveOrUpdate/{save}"})
+	@PostMapping(value = {"/profile/saveOrUpdate/{save}"},produces = { "application/json"})
 	public ResponseEntity<Object> saveorUpdate(@RequestBody ProfileDto profileDto,@PathVariable boolean save) throws IOException 
 	{
 
