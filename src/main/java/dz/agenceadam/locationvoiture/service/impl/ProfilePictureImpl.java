@@ -23,7 +23,7 @@ public class ProfilePictureImpl {
 		Profile profile = new Profile();
 		profile.setId(profilePictureDto.getIdProfile());
 		
-		ProfilePicture existeProfilePicture = iProfilePictureRepository.findOne(profilePictureDto.getId());
+		ProfilePicture existeProfilePicture = iProfilePictureRepository.findOne(profilePictureDto.getIdProfile());
 		
 		ProfilePicture profilePicture = GenericBuilder.of(ProfilePicture :: new)
 				.with(ProfilePicture::setLogo, profilePictureDto.getLogo())
