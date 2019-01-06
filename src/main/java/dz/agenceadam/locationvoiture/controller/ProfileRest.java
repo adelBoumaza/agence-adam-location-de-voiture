@@ -41,9 +41,9 @@ public class ProfileRest {
 	public ResponseEntity<Object> saveorUpdate(@RequestBody ProfileDto profileDto,@PathVariable boolean save) throws IOException 
 	{
 
-		profileService.saveOrUpdate(profileDto, save);
+		ProfileDto responseDto =  profileService.saveOrUpdate(profileDto, save);
 		
-		return new ResponseEntity<>("le profile bien enregistrer",HttpStatus.OK);
+		return new ResponseEntity<>("le profile bien enregistrer"+ responseDto ,HttpStatus.OK);
 	}
 	
 	@PostMapping(value = {"/profile/saveOrUpdateProfilePicture/{idProfile}/{nomFichier}/{save}"})
