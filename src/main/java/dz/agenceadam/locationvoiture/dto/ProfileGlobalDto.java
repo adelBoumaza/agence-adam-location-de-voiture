@@ -4,6 +4,7 @@ public class ProfileGlobalDto {
 
 	private ProfilePictureDto profilePictureDto = new ProfilePictureDto();
 	private ProfileDto profileDto = new ProfileDto();
+	private String encodeImage ;
 	
 	public ProfileGlobalDto() {
 	}
@@ -19,6 +20,16 @@ public class ProfileGlobalDto {
 	}
 	public void setProfileDto(ProfileDto profileDto) {
 		this.profileDto = profileDto;
+	}
+	
+	
+
+	public String getEncodeImage() {
+		return encodeImage;
+	}
+
+	public void setEncodeImage(String encodeImage) {
+		this.encodeImage = encodeImage;
 	}
 
 	@Override

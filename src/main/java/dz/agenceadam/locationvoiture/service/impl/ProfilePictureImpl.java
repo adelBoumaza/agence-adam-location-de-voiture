@@ -1,6 +1,8 @@
 package dz.agenceadam.locationvoiture.service.impl;
 
 
+import java.util.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,6 +59,8 @@ public class ProfilePictureImpl {
 			profileGlobalDto = GenericBuilder.of(ProfileGlobalDto::new)
 					.with(ProfileGlobalDto::setProfileDto, profileDto)
 					.with(ProfileGlobalDto::setProfilePictureDto, profilePictureDto)
+					.with(ProfileGlobalDto::setEncodeImage,
+							Base64.getEncoder().withoutPadding().encodeToString(profilePictureDto.getLogo()))
 					.build();
 		}else {
 			Profile profile = iProfileRepository.findOneProfileByUser(idUser);
