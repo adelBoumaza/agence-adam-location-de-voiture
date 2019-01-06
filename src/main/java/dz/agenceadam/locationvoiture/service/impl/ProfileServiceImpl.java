@@ -46,6 +46,7 @@ public class ProfileServiceImpl implements IProfileService {
 			profile.setId(existeProfile.getId());
 		}
 		iProfileRepository.save(profile);
+		profileDto.setId(profile.getId());
 		return profileDto;
 	}
 	
