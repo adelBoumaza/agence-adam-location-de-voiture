@@ -84,6 +84,7 @@ public class ProfilePictureImpl {
 
 	private ProfileDto newProfile(ProfilePicture profilePicture) {
 		ProfileDto profileDto = GenericBuilder.of(ProfileDto::new)
+				.with(ProfileDto::setId, profilePicture.getProfile().getId())
 				.with(ProfileDto::setAdresse, profilePicture.getProfile().getAdresse())
 				.with(ProfileDto::setNomAgence, profilePicture.getProfile().getNomAgence())
 				.with(ProfileDto::setNom, profilePicture.getProfile().getNom())
@@ -96,6 +97,7 @@ public class ProfilePictureImpl {
 	}
 	private ProfileDto newProfile(Profile profile) {
 		ProfileDto profileDto = GenericBuilder.of(ProfileDto::new)
+				.with(ProfileDto::setId, profile.getId())
 				.with(ProfileDto::setAdresse, profile.getAdresse())
 				.with(ProfileDto::setNomAgence, profile.getNomAgence())
 				.with(ProfileDto::setNom, profile.getNom())
